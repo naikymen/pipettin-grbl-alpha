@@ -1,6 +1,6 @@
 # mongodb 3.2.12 binaries
 
-Compiled for 32-bit Raspbian in the Raspberry Pi 4.
+Mongo compiled for 32-bit Raspbian in the Raspberry Pi 4. Unfortunately, the apt version did not work out for us.
 
 See notes at `gui/README.md`.
 
