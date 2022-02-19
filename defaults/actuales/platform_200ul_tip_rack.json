@@ -1,0 +1,20 @@
+{
+  "name": "200ul_tip_rack",
+  "description": "Rack de tips",
+  "type": "TIP_RACK",
+  "color": "#8a1eF6",
+  "width": 122,
+  "length": 86,
+  "firstWellCenterX": 12,
+  "firstWellCenterY": 10,
+  "wellDiameter": 4.5,
+  "wellSeparationX": 8.87,
+  "wellSeparationY": 8.87,
+  "wellsColumns": 12,
+  "wellsRows": 8,
+  "defaultTopPosition": 54.5,
+  "defaultMaxVolume": 190,
+  "defaultLoadBottom": 25,
+  "tipLength": 50,
+  "rotation": 0
+}

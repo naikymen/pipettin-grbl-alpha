@@ -1,0 +1,18 @@
+{
+  "name": "96 well plate",
+  "description": "Some description",
+  "type": "TUBE_RACK",
+  "width": 121,
+  "length": 86,
+  "color": "#4c7ecf",
+  "firstWellCenterX": 12,
+  "firstWellCenterY": 10,
+  "wellDiameter": 6,
+  "wellSeparationX": 9,
+  "wellSeparationY": 9,
+  "wellsColumns": 12,
+  "wellsRows": 8,
+  "defaultTopPosition": 27,
+  "defaultBottomPosition": -20,
+  "rotation": 0
+}

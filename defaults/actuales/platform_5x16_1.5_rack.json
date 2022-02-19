@@ -1,0 +1,20 @@
+{
+  "name": "5x16_1.5_rack",
+  "description": "Standard microtube rack",
+  "type": "TUBE_RACK",
+  "color": "#fc4b0c",
+  "width": 215,
+  "length": 72,
+  "firstWellCenterX": 10,
+  "firstWellCenterY": 10,
+  "wellDiameter": 10,
+  "wellSeparationX": 13.2,
+  "wellSeparationY": 13.2,
+  "wellsColumns": 16,
+  "wellsRows": 5,
+  "defaultTopPosition": 0,
+  "defaultBottomPosition": -19,
+  "defaultMaxVolume": 1500,
+  "rotation": 0,
+  "Z bottom with p200 tip": 26
+}

@@ -1,0 +1,93 @@
+{
+   "_id":{
+      "$oid":"5f03a1113f581412a6fefe9d"
+	},
+   "name":"3x3_1.5_rack",
+   "description":"3D printed rack",
+   "type":"TUBE_RACK",
+   "color":"#f0e769",
+   "width":50,
+   "length":50,
+   "firstWellCenterX":10,
+   "firstWellCenterY":10,
+   "wellDiameter":10.0,
+   "wellSeparationX":15,
+   "wellSeparationY":15,
+   "wellsColumns":3,
+   "wellsRows":3,
+   "defaultTopPosition":0,
+   "defaultBottomPosition":5,
+   "defaultMaxVolume":1500,
+   "rotation":0
+}
+{
+   "_id":{
+      "$oid":"5f03a13e3f581412a6fefe9f"
+	},
+   "name":"10ul_tip_rack_sartorius",
+   "description":"Rack de tips sartorius",
+   "type":"TIP_RACK",
+   "color":"#8adee6",
+   "width":120.0,
+   "length":90.0,
+   "firstWellCenterX":5.0,
+   "firstWellCenterY":10.0,
+   "wellDiameter":5.0,
+   "wellSeparationX":10.0,
+   "wellSeparationY":10.0,
+   "wellsColumns":12,
+   "wellsRows":8,
+   "defaultTopPosition":17,
+   "defaultMaxVolume":10.0,
+   "defaultLoadBottom":2.0,
+   "tipLength":34.4,
+   "rotation":0.0
+}
+{
+   "_id":{
+      "$oid":"5f03a1563f581412a6fefea0"
+	},
+   "name":"12x8_0.2_rack",
+   "description":"Gradilla 96 wells ap-biotech EXG-P1090C",
+   "type":"TUBE_RACK",
+   "color":"#7a85cf",
+   "width":121.0,
+   "length":86.0,
+   "firstWellCenterX":12.0,
+   "firstWellCenterY":10.0,
+   "wellDiameter":6.0,
+   "wellSeparationX":9.0,
+   "wellSeparationY":9.0,
+   "wellsColumns":12.0,
+   "wellsRows":8.0,
+   "defaultTopPosition":0,
+   "defaultBottomPosition":0.0,
+   "defaultMaxVolume":200.0,
+   "rotation":0.0
+}
+{
+   "_id":{
+      "$oid":"5f03bd9d3f581412a6fefea3"
+	},
+   "name":"trash_bucket",
+   "description":"Generic recipient",
+   "type":"BUCKET",
+   "color":"#cf947a",
+   "width":130.0,
+   "length":100.0,
+   "defaultTopPosition":0,
+   "rotation":0.0
+}
+{
+	"_id":{
+      "$oid":"5f065562c2a14791c23ef289"
+	},
+	"name" : "Petri dish 90x15",
+	"description" : "Petri dish 90x15",
+	"type" : "PETRI_DISH",
+	"diameter" : 90,
+	"height" : 15,
+	"color" : "#c3c3c3",
+	"defaultTopPosition" : 0,
+	"defaultBottomPosition" : 5
+}

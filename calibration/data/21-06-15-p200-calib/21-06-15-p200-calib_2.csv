@@ -1,0 +1,9 @@
+Vol,peso_inicial,peso_final,nota,series_index,grupo
+40,0.888,0.9284,use los tubos anteriores tal como estaban,1,serie
+40,0.901,0.9413,le subi 1 unidad al parametro de retraccion en el homing de P,2,serie
+40,0.9018,0.9415,,3,serie
+40,0.895,0.9303,,4,serie
+40,0.9087,0.9464,,1,paralelo
+40,0.8993,0.9367,,2,paralelo
+40,0.895,0.9325,,3,paralelo
+0,0.8941,0.8952,menos este que no le agreque volumen,4,paralelo

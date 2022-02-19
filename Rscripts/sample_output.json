@@ -1,0 +1,144 @@
+{
+  "master_mix": {
+    "general_info": {
+      "n_reactions": 3,
+      "n_extra": 0.9,
+      "total_vol": 78,
+      "mix_volume": 70.98,
+      "reaction_volume": 20,
+      "mix_vol_per_rxn": 18.2,
+      "mix_x": 1.0989
+    },
+    "mix_component_volumes": {
+      "water": 60.84,
+      "buffer": 7.8,
+      "dNTPs": 1.56,
+      "pol": 0.78
+    },
+    "variable_component_rxn_volumes": {
+      "template": 1,
+      "pFw": 0.4,
+      "pRv": 0.4
+    },
+    "cut_level": 2,
+    "cut_label": "level_2",
+    "grupo": [
+      {
+        "label": "template2_fwdprimer2_revprimer3",
+        "template": "template2",
+        "pFw": "fwdprimer2",
+        "pRv": "revprimer3",
+        "order": 1,
+        "level_1": 2,
+        "level_2": 1
+      },
+      {
+        "label": "template1_fwdprimer1_revprimer1",
+        "template": "template1",
+        "pFw": "fwdprimer1",
+        "pRv": "revprimer1",
+        "order": 2,
+        "level_1": 1,
+        "level_2": 1
+      },
+      {
+        "label": "template1_fwdprimer1_revprimer2",
+        "template": "template1",
+        "pFw": "fwdprimer1",
+        "pRv": "revprimer2",
+        "order": 3,
+        "level_1": 1,
+        "level_2": 1
+      }
+    ],
+    "mix.name": "master_mix"
+  },
+  "level_1.branch_1": {
+    "general_info": {
+      "n_reactions": 2,
+      "n_extra": 0.54,
+      "total_vol": 50.8,
+      "mix_volume": 49.784,
+      "reaction_volume": 20,
+      "mix_vol_per_rxn": 19.6,
+      "mix_x": 1.0204
+    },
+    "mix_component_volumes": {
+      "master_mix": 46.228,
+      "pFw": 1.016,
+      "template": 2.54
+    },
+    "variable_component_rxn_volumes": {
+      "pRv": 0.4
+    },
+    "mix.name": "level_1.branch_1",
+    "var_component_names": {
+      "pRv": "revprimer1, revprimer2"
+    },
+    "mix_component_names": {
+      "template": "template1",
+      "pFw": "fwdprimer1"
+    },
+    "grupo": [
+      {
+        "label": "template1_fwdprimer1_revprimer1",
+        "template": "template1",
+        "pFw": "fwdprimer1",
+        "pRv": "revprimer1",
+        "order": 2,
+        "level_1": 1
+      },
+      {
+        "label": "template1_fwdprimer1_revprimer2",
+        "template": "template1",
+        "pFw": "fwdprimer1",
+        "pRv": "revprimer2",
+        "order": 3,
+        "level_1": 1
+      }
+    ],
+    "labels": ["template1_fwdprimer1_revprimer1", "template1_fwdprimer1_revprimer2"],
+    "cut_level": 1,
+    "cut_label": "level_1",
+    "dependency": "master_mix"
+  },
+  "level_1.branch_2": {
+    "general_info": {
+      "n_reactions": 1,
+      "n_extra": 0.27,
+      "total_vol": 25.4,
+      "mix_volume": 25.4,
+      "reaction_volume": 20,
+      "mix_vol_per_rxn": 20,
+      "mix_x": 1
+    },
+    "mix_component_volumes": {
+      "master_mix": 23.114,
+      "pFw": 0.508,
+      "pRv": 0.508,
+      "template": 1.27
+    },
+    "variable_component_rxn_volumes": {},
+    "mix.name": "level_1.branch_2",
+    "var_component_names": [],
+    "mix_component_names": {
+      "template": "template2",
+      "pFw": "fwdprimer2",
+      "pRv": "revprimer3"
+    },
+    "grupo": [
+      {
+        "label": "template2_fwdprimer2_revprimer3",
+        "template": "template2",
+        "pFw": "fwdprimer2",
+        "pRv": "revprimer3",
+        "order": 1,
+        "level_1": 2
+      }
+    ],
+    "labels": "template2_fwdprimer2_revprimer3",
+    "cut_level": 1,
+    "cut_label": "level_1",
+    "dependency": "master_mix"
+  }
+}

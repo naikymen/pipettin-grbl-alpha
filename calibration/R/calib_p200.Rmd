@@ -1,0 +1,97 @@
+---
+title: "Calibracion p200"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: true
+    toc_depth: 2
+    number_sections: false
+    smooth_scroll: false
+    code_folding: hide
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+    toc_depth: 2
+    number_sections: true
+editor_options:
+  chunk_output_type: inline
+author: NM
+date: "9 abril, 2021"
+urlcolor: blue
+---
+
+<!-- setup chunk -->
+
+```{r setup, message=F}
+knitr::opts_chunk$set(message = F)
+knitr::opts_knit$set(root.dir = here::here())
+# library(utiles)
+
+# knitr::opts_chunk$set(cache = T)
+library(dplyr)
+# library(tidyr)
+# library(purrr)
+# library(plotly)
+library(ggplot2)
+# library(renv)
+```
+
+<!-- your code -->
+
+## Load data
+
+```{r}
+datos <- read.csv("data/calib_p200.csv")
+
+datos
+```
+
+## Have fun!
+
+```{r}
+datos <- datos %>% mutate(delta_masa = peso_final - peso_inicial,
+                          gui_vol = Vol) %>% 
+  select(-nota, -Vol)
+
+datos
+```
+
+```{r}
+ggplot(datos, aes(x=gui_vol, delta_masa)) +
+  geom_point(alpha=.5) +
+  geom_abline(slope = 1/1000, intercept = 0) +
+  coord_cartesian(ylim = c(0, 0.12), xlim=c(0,120))
+
+# ggsave("results/calib_p200.png")
+
+ggplot(datos, aes(x=as.factor(gui_vol), 1000*delta_masa-gui_vol, color=as.factor(gui_vol))) +
+  geom_jitter(width = 0.1) +
+  ylab("Diferencia") +
+  xlab("Volumen esperado") +
+  ggtitle("Diferencia del volumen pipeteado respecto al esperado") +
+  theme_minimal()
+
+# ggsave("results/calib_p200.diff.png")
+```
+
+```{r}
+sample.n <- 3
+alpha = 0.05
+degrees.freedom = sample.n - 1
+t.score = qt(p=alpha/2, df=degrees.freedom,lower.tail=F)
+
+datos %>% 
+  mutate(real_vol = delta_masa * 1000) %>% 
+  group_by(gui_vol) %>% 
+  summarise(real_vol.mean = mean(real_vol), real_vol.sd = sd(real_vol),
+            real_vol.se = sd(real_vol)/sqrt(n())) %>% 
+  mutate(ci = t.score * real_vol.se) %>% 
+  mutate(rel.ci.error = 100*ci/real_vol.mean,
+         rel.sd.error = 100*real_vol.sd*2/real_vol.mean)
+```
+
+El error aleatorio esta cerca de +/- 0.75% para los target volumes 70 y 120. Pero para 30 es +/- 6.7% (hay dos puntos cerca y uno lejos, pero no parece un outlier).
+
+Nota: use $2\sigma$ como criterio de error (~90% de chance de ver un dato en el intervalo $\mu \pm 2 \sigma$).
+

@@ -1,0 +1,35 @@
+{
+  "name": "2021-12-13 PCR autospace test protocol",
+  "description": "asdasd",
+  "workspace": "2021-12-13-PCR-autospace-test",
+  "template": "pcr_mix",
+  "steps": [],
+  "templateDefinition":
+   { "tube15Platform": "5x16_1.5_rack 1",
+     "PCRtubePlatform": "12x8_0.2_rack 1",
+     "tipsPlatform": "200ul_tip_rack 1",
+     "trashPlatform": "trash_bucket 1",
+     "reaction_volume": 20,
+     "dntpsStock": 50,
+     "dntpsFinal": 1,
+     "primerStock": 50,
+     "primerFinal": 1,
+     "polVol": 1,
+     "templateVol": 1,
+     "bufferStock": 10,
+     "bufferFinal": 1,
+     "components": [
+       { "name": "pcr1",
+         "fwPrimers": [ "fwdprimer1" ],
+         "rvPrimers": [ "revprimer1", "revprimer2" ],
+         "templates": [ "template1" ]
+       },
+       { "name": "pcr2",
+         "fwPrimers": [ "fwdprimer2" ],
+         "rvPrimers": [ "revprimer3" ],
+         "templates": [ "template2" ]
+       }
+     ],
+     "latestRegenerateWorkflow": false,
+     "latestRegenerateProtocol": false }
+}

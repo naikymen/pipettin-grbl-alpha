@@ -1,0 +1,111 @@
+---
+title: "Effect of capillary pressure"
+---
+
+## Efecto de la capilaridad
+
+En `bibliography/Technical_note_Pipettes_1118.pdf` (pg. 4) aparece la siguiente ecuación:
+
+$$
+\Delta V \sim -V_D \cdot \frac{\Delta p_s}{p_a}
+$$
+
+Relaciona el efecto de la capilaridad sobre el volumen, donde:
+
+* $V_D$ es el _captive air volume_.
+* $p_a$ es la presión barométrica.
+* $p_s$ es la presión "capilar".
+
+Tal que:
+
+$$
+p_s = \frac{4 \cdot \sigma \cdot cos(\theta)}{d}
+$$
+
+Donde:
+
+* $\sigma$ es la tensión superficial.
+* $d$ es el diámetro interno del tip.
+* $\theta$ es el ángulo de contacto entre el líquido y el tip.
+
+De estas cosas, intuyo que una de las más influyentes es $d$.
+En cambio, no veo por qué $\theta$ cambiaría demasiado en la interfaz con el aire.
+Y $\sigma$ es constante para una solución fija, así que no molesta si uso solo agua.
+
+Debe ser difícil corregir esto, por eso las pipetas tienen un límite inferior, y después hay que cambiar de pipeta/tip.
+
+## p200 tips
+
+En internet hay una foto de Millenial que dice 0.53 mm (D.I.).
+
+Unas de corning dicen 0.028'' (D.I.) o sea 0.71 mm (D.I.).
+
+Ver: https://certs-ecatalog.corning.com/life-sciences/product-descriptions/4711.pdf
+
+## función de corrección
+
+La pregunta es como depende $d$ de la cantidad de volumen restante en el tip, y si puedo hacer alguna corrección para el dispensing a bajo volumen.
+
+En ese caso la forma funcional sería la siguiente $\Delta V \ \propto \frac{1}{d_{final}} - \frac{1}{d_{inicial}}$.
+
+Poniendo algun dato:
+
+$$
+\Delta V_{p_s} \ \propto \frac{1}{0.6 mm} - \frac{1}{d_{inicial}}
+$$
+
+Donde $d_{inicial}$ depende de cuanto volumen queda en el tip (a que altura del cono del tip está el líquido).
+
+Si grafico:
+
+```{r}
+f <- function(x) (1/6) - (1/x)
+curve(expr = f,
+      from = 2/6, # 0.333
+      to = 1/6)   # 0.166
+```
+
+Ahora, si quito la ordenada, la forma es igual.
+
+La idea es que mientras más grande sea la diferencia en volumen (eje x creciente),
+mayor es la diferencia de presión, pero ese efecto se achata a la larga, 
+y por eso es despreciable.
+
+En este plot se ve eso más marcadamente, graficando hacia X mayores:
+
+```{r}
+f <- function(x) -1/x
+curve(expr = f,
+      from = 1/6, # 0.333
+      to = 1)   # 0.166
+```
+
+Aunque eso es más correcto, quizás no sea del todo necesario, y pueda safar con una recta a volumenes bajos.
+
+La función que me serviría es una que "agrega" volumen dispensado.
+
+Mi error con s_retract=5 es de -2 uL, así que al final debería tener un volumen extra de 2.
+
+A grandes rasgos:
+
+> Si el volumen final es menor a 20 uL:
+> 
+> Aplicar una corrección lineal donde se agrega 1 uL por cada 10 uL pipeteados.
+
+Alternativamente:
+
+> Si el volumen final es menor a 20 uL:
+> 
+> Aplicar una corrección recíproca donde se agrega 1 uL por cada 10 uL pipeteados (de forma no lineal: 1/x).
+
+Esta curva hace eso, por cada uL que se pasa del límite de 20 uL, agrega un poco, hasta llegar a 2 uL cuando ya no queda nada en el tip.
+
+```{r}
+f <- function(x) abs((-1/(15+1-x) + 0.04761905) * (2/0.952381))
+f <- function(x, start_vol=20, max_cor=2) -abs(-x*max_cor/start_vol+max_cor)
+curve(expr = f,
+      from = 0, # 0.333
+      to = 20)   # 0.166
+
+f(3)
+```

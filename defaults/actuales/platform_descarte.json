@@ -1,0 +1,10 @@
+{
+  "name": "descarte",
+  "description": "Generic recipient",
+  "type": "BUCKET",
+  "color": "#cf947a",
+  "width": 122,
+  "length": 86,
+  "defaultTopPosition": 44,
+  "rotation": 0
+}

@@ -1,0 +1,21 @@
+{
+    "name": "200ul_tip_rack",
+    "description": "Rack de tips",
+    "type": "TIP_RACK",
+    "color": "#8a1eF6",
+    "width": 122,
+    "length": 86,
+    "firstWellCenterX": 12,
+    "firstWellCenterY": 10,
+    "wellDiameter": 4.5,
+    "wellSeparationX": 9,
+    "wellSeparationY": 9,
+    "wellsColumns": 12,
+    "wellsRows": 8,
+    "defaultTopPosition": 54.5,  // altura considerando el tip, sin tip es 38.6 aprox
+    "defaultMaxVolume": 10,
+    "defaultLoadBottom": 45.5,
+    //"tipLength": 50.4,       // se va a 106.9 mm (-52 del probe = 54.9) (y el limite es 103 + 2.895 ~ 105.895)
+    "tipLength": 44,           // considerando cuanto se hunde la pipeta en el tip
+    "rotation": 0
+}

@@ -1,0 +1,6 @@
+[submodule "gerbil_interface/gerbil"]
+	path = gerbil_interface/gerbil
+	url = https://github.com/michaelfranzl/gerbil.git
+[submodule "gerbil_interface/gcode_machine"]
+	path = gerbil_interface/gcode_machine
+	url = https://github.com/michaelfranzl/gcode_machine.git

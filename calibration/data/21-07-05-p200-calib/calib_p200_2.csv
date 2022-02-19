@@ -1,0 +1,9 @@
+Vol,peso_inicial,peso_final,clase
+150,1.2874,1.1353,source
+50,1.2945,1.2437,source
+20,1.3665,1.3459,source
+0,1.482,1.4787,source
+150,1.0086,1.1563,target
+50,0.9092,0.9576,target
+20,0.8922,0.9111,target
+0,0.8531,0.8527,target
