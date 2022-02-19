@@ -60,7 +60,7 @@ Library that interprets the user input and generates protocol.json files.
 
 Library that interprets the user input and generates workspace.json files.
 
-### protocol2gcode and gerbil_interface
+### protocol2gcode
 
 #### protocol2gcode
 
@@ -70,26 +70,21 @@ After the GUI defines workspace, platforms and protocol, it saves all elementos 
 
 See protocol2gcode/README.md and defaults/README.md for instruction on setting up testing without the GUI, using the default JSON templates.
 
-#### gerbil_interface
-
-The geril python 3 module was included for testin. It seems promising!
-
 ## Firmware
 
-GRBL was configured in "gantry" mode: two independent steppers and end stops.
+GRBL was configured in "gantry" mode: two independent steppers and end stops for the Y axis.
 
 ## Hardware
 
+Hardware _at a glance_.
+
 ### Electronics
 
-Arduino UNO with CNC Shield 3.0 (clone).
+* Arduino UNO with CNC Shield 3.0 (clone).
+* Raspberry Pi 4.
+* Two buck converters, a capacitor and a transistor.
 
-Modifications (TODO: obsolete):
-
-  * The Y axis is cloned to the A axis. Jumper pins are setup accordingly (gantry squaring is not supported at the same time as variable spindle on this CNC shield v3.0).
-  * D12 and D11 were exchanged by disconecting pins on the shield. Using two short jumper wires, the pins on the Arduino were connected to the correct pins on the shield.
-  * A 10 uF capacitor was connected between RESET and GND. This was necessary to prevent a GRBL reset when `pyserial` reconnects to the Arduino. There might be a software way to fix this, but I could not get it to work (see https://github.com/gnea/grbl/issues/160 ).
-  * A servo was connected to the variable spindle PWM output pin (D11).
+Se details at the dedicated [documentation](doc/electronica/README.md) page.
 
 ### Structure and Mechanics
 

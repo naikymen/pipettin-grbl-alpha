@@ -1,0 +1,361 @@
+<% include header.ejs %>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Pipettin grbl</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input style="display:none;" type="file" id="file-selector" accept=".json" onchange="fileSelected(event); return false;" onclick="this.value=null;">
+  <input style="display:none;" type="file" id="file-selector-platform" accept=".json" onchange="fileSelectedPlatform(event); return false;" onclick="this.value=null;">
+  <input style="display:none;" type="file" id="file-selector-protocol" accept=".json" onchange="fileSelectedProtocol(event); return false;" onclick="this.value=null;">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Workspace
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" onclick= "return newWorkspaceMenu();" href="#">New</a>
+          <a data-toggle="modal" data-target="#listModal" id="loadWList" onclick= "return getWorkspacesList();" class="dropdown-item" href="#">Open</a>
+          <a data-toggle="modal" id="importWorkspaceMenuItem" onclick= "return importWorkspaceMenu();" class="dropdown-item" href="#">Import</a>
+          <a style="display:none;" data-toggle="modal" id="exportWorkspaceMenuItem" onclick= "return exportWorkspaceMenu();" class="dropdown-item" href="#">Export</a>
+          <a style="display:none;" data-toggle="modal" id="saveWorkspaceMenuItem" onclick= "return saveWorkspaceMenu();" class="dropdown-item" href="#">Save</a>
+          <a style="display:none;" data-toggle="modal" id="saveAsWorkspaceMenuItem" onclick= "return saveAsWorkspaceMenu();" class="dropdown-item" href="#">Save As...</a>
+          <a style="display:none;" data-toggle="modal" id="closeMenuItem" onclick= "return closeMenu();" class="dropdown-item" href="#">Close</a>
+          <a style="display:none;" data-toggle="modal" id="deleteMenuItem" onclick= "return deleteMenu();" class="dropdown-item" href="#">Delete</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a id="workspaceName" class="nav-link disabled" href="#"></a>
+      </li>
+      <li style="display:none;" class="nav-item" id="saveWorkspaceGlobalButton">
+        <a  onclick= "return saveWorkspaceMenu();" title="Save Workspace" id="workspaceName" class="nav-link" href="#"><i style="font-size: 17px;" class="fa fa-save" aria-hidden="true"></i></a>
+      </li>
+      <li style="display:none;" class="nav-item" id="global-notification" onclick="return dismissGlobalAlert()">
+        <div id="global-noti-box" class="global-noti nav-link alert-primary" style="color: rgb(0, 0, 0);"><i id="global-noti-icon" style="font-size: 17px;" class="fa fa-exclamation-circle" aria-hidden="true"></i>&nbsp;<span id="global-noti-text"></span></div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+
+      <a title='Kill protocol process' alt='Kill protocol process' class="btn btn-outline-danger" id="killProcess" ><i onclick= "return killProtocolProcess();" class="fa fa-skull"></i></a>
+      &nbsp;
+      <select class="form-control" id="serialPort">
+
+      </select>
+      <button class="btn btn-light" onclick= "return loadSerialPorts();" ><i style="font-size: 17px;" class="fa fa-sync" aria-hidden="true"></i></button>
+      &nbsp;
+      <select class="form-control" id="baudRate">
+        <option value=""> BaudRate</option>
+        <option value="9600">9600</option>
+        <option value="19200">19200</option>
+        <option value="57600">57600</option>
+        <option value="115200" selected>115200</option>
+      </select>
+      &nbsp;
+      <button class="btn btn-outline-success" data-toggle="modal" data-target="#listModal" id="loadPList" onclick= "return getPlatformsList();" >Platforms</button>
+
+    </form>
+  </div>
+</nav>
+
+<div class="container-fluid">
+
+  <div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="listModal" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 80%">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="loadingmodal" class="text-center" style="display: none;">
+          <div class="spinner-border">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div id="dataPanel" class="modal-body">
+          Loading...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="new-protocol-modal" tabindex="-1" role="dialog" aria-labelledby="new-protocol-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newProtocolModalTitle">New Protocol</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="protocolModalDataPanel" class="modal-body">
+          <form id="newProtocolForm" class="needs-validation" onsubmit="return createNewProtocol();">
+            
+              <label for="newProtocolName">Short Name</label>
+              <input type="text" class="form-control" id="newProtocolName" aria-describedby="newProtocolNameHelp" required>
+            
+            <div class="form-group">
+              <label for="newProtocolDescription">Description</label>
+              <textarea class="form-control" id="newProtocolDescription" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="newProtocolTemplate">Template</label>
+              <select class="form-control" id="newProtocolTemplate">
+                <option value="">None</option>
+                <option value="pcr_mix">PCR Mix</option>
+              </select>
+            </div>
+           <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="closingWorkspace" tabindex="-1" role="dialog" aria-labelledby="closingWorkspace" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="saveWorkModalTitle"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="dataOpeningPanel" class="modal-body">
+          Your changes will be lost if you don't save them.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="return dontSaveCurrent();">Don't Save</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="return saveCurrent();" >Save</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="calibrationPanel" tabindex="-1" role="dialog" aria-labelledby="calibrationPanel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="calibrationPaneltitle"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="calibrationPanelData" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="calibrationAction" >Save and Continue</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="humanActionPanel" tabindex="-1" role="dialog" aria-labelledby="humanActionPanel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="humanActionPanelTitle">Human Intervention Required</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          The running protocol is requiring your intervention. Please do the following steps and press "Continue" when you finish:
+        </div>
+        <div id="humanActionPanelData" class="modal-body human-details">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="return stopHumanIntervention();">Stop protocol</button>
+          <button type="button" class="btn btn-success" onclick="return doneHumanIntervention();">Continue with protocol</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="protocol2codeSayPanel" tabindex="-1" role="dialog" aria-labelledby="protocol2codeSayPanel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="humanActionPanelTitle">protocol2code say</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="protocol2codeSayPanelData" class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+<div id="app">
+  <div class="row">
+    <div class="col-sm-2" id="left" style="display:none;">
+
+    </div>
+    <div class="col-sm-8" style="margin-top: 4px;" id="middle">
+      <div class="row" style="margin-bottom: 4px;">
+        <div class="col-sm-11">
+          <ul class="nav nav-pills" id="toolBar" style="display:none;">
+            <li class="nav-item">
+              <button type="button" class="btn btn-sm btn-outline-secondary" id='coordinates'>0000,0000</button>
+            </li>
+            <li class="nav-item" style="margin-left: 5px;">
+              <div class="">
+                <button class="btn btn-secondary btn-sm" onclick="return toggleManualControl();" type="button" id="controlMenuButton" aria-haspopup="true" aria-expanded="false">
+                  Manual Control
+                </button>
+              </div>
+            </li>
+
+            <li class="nav-item" style="margin-left: 5px;">
+              <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" onclick="return loadPlatformsDropdown();" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Insert Platform
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="platformsDropDownContent">
+                  
+                </div>
+              </div>
+            </li>
+            
+            <li class="nav-item" style="display: none; margin-left: 5px;" id="insertContentOption">
+              <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownContentMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Insert Content
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownContentMenuButton" id="contentDropDownContent">
+                  <a class="dropdown-item" href="#" onclick="return insertTube()">Tube</a>
+                  <a class="dropdown-item" href="#" onclick="return insertTip()">Tip</a>
+                </div>
+              </div>
+            </li>
+            
+            <li class="nav-item" style="display: none; margin-left: 5px;" id="calibrationToolsMenu">
+              <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownContentMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Calibration Tools
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownCalibrationToolsMenuButton" id="calibrationToolstDropDownContent">
+                  <a class="dropdown-item" href="#" onclick="return goToDialog()">Go to Here</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item" style="margin-left: 5px;">
+              <button type="button" class="btn btn-sm btn-outline-secondary" id='toolData' style="cursor: default;">[tool data]</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-sm-12">
+          <div id="draw"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="console"></div>
+        </div>
+      </div>
+    </div>
+     <div class="col-2 no-gutters" id="right" style="display:none;">
+    </div>
+  </div>
+
+</div>
+
+<div onkeydown="return joystickKeyPress(this, event)" tabindex="0" id="joystick" style="display:none;">
+  <div id="joystick-header"><i style="display:none" id="joystick-keyboard" class="fa fa-keyboard" aria-hidden="true"></i> Manual Control <span style="cursor: pointer;" onclick="return toggleManualControl();" aria-hidden="true">&times;</span></div>
+    <div style="font-size: 1rem; padding: 7px;">
+      <div class="row">
+        <div class="col-sm">
+          
+        </div>
+        <div class="col-sm">
+          <i id="joy_sub_y" alt="(W)" title="(W)" onclick="return manualMove('-y');" style="" class="fa fa-arrow-up control-button" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm">
+          
+        </div>
+        <div class="col-sm">
+          <i id="joy_add_z" alt="(R)" title="(R)" onclick="return manualMove('+z');" style="" class="fa fa-arrow-up control-button" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm">
+          <i id="joy_add_p" alt="(T)" title="(T)" onclick="return manualMove('+p');" style="" class="fa fa-arrow-up control-button" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <i id="joy_sub_x" alt="(A)" title="(A)" onclick="return manualMove('-x');" style="" class="fa fa-arrow-left control-button" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm">
+           <input type="text" class="" size="3" id="controlStepSizeXY" style="font-size: 0.7rem" value="1"/>
+        </div>
+        <div class="col-sm">
+          <i id="joy_add_x"  alt="(D)" title="(D)" onclick="return manualMove('+x');" style="" class="fa fa-arrow-right control-button" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm" style="left: 0px;">
+           <input type="text" class="" size="3" id="controlStepSizeZ" style="font-size: 0.7rem" value="1"/>
+        </div>
+        <div class="col-sm" style="left: 0px;">
+          <input type="text" class="" size="3" id="controlStepSizeP" style="font-size: 0.7rem" value="1"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          
+        </div>
+        <div class="col-sm">
+          <i id="joy_add_y" alt="(S)" title="(S)" onclick="return manualMove('+y');" style="" class="fa fa-arrow-down control-button" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm">
+          
+        </div>
+        <div class="col-sm">
+         <i id="joy_sub_z" alt="(F)" title="(F)" onclick="return manualMove('-z');" style="" class="fa fa-arrow-down control-button" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm">
+         <i id="joy_sub_p" alt="(G)" title="(G)" onclick="return manualMove('-p');" style="" class="fa fa-arrow-down control-button" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <button id="joy_home_xyz"  alt="(H)" title="(H)" onclick="return manualMove('home-xyz');"class="btn btn-secondary btn-sm">xyz<i style="" class="fa fa-home" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-sm">
+          <button id="joy_home_y" alt="(Y)" title="(Y)" onclick="return manualMove('home-y');" class="btn btn-secondary btn-sm">y<br><i style="" class="fa fa-home" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-sm">
+          <button id="joy_home_x" alt="(X)" title="(X)" onclick="return manualMove('home-x');" class="btn btn-secondary btn-sm">x<br><i style="" class="fa fa-home" aria-hidden="true"></i></button>
+        </div>
+         <div class="col-sm">
+          <button id="joy_home_z" alt="(Z)" title="(Z)" onclick="return manualMove('home-z');" class="btn btn-secondary btn-sm">z<br><i style="" class="fa fa-home" aria-hidden="true"></i></button>
+        </div>
+         <div class="col-sm">
+          <button id="joy_home_p" alt="(P)" title="(P)" onclick="return manualMove('home-p');" class="btn btn-secondary btn-sm">p<br><i style="" class="fa fa-home" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+  <!-- Position it -->
+
+
+
+
+<script>
+  $(document).ready(function () {
+    init();
+  })
+</script>
+<% include footer.ejs %>

@@ -1,0 +1,20 @@
+<table class="table table-sm table-hover table-borderless table-striped">
+ <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th style="text-align: right;" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% list.forEach(function(item, i){ %>
+    <tr>
+      <td><%=i+1%></td>
+      <td><%=item.name%></td>
+      <td><%=item.description%></td>
+      <td style="text-align: right;"> <button onclick="loadWorkspace('<%=escape(item.name)%>');" type="button" class="btn btn-sm btn-primary">Open</button> <button onclick="deleteWorkspace('<%=escape(item.name)%>');" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-trash-alt"></i></button></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>

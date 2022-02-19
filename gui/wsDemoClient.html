@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script>
+    /* globals io $ */
+    var socket = io('http://localhost:3333', {
+      transports: ['websocket']
+    });
+
+    var messages = [];
+
+    socket.on('connect', function () {
+      console.log(socket.id);
+    });
+
+    socket.on('welcome', function (data) {
+      console.log('welcome');
+      if (data.ok) {
+        $('#status').html('Connected socket ID: ' + socket.id);
+      }
+    });
+
+    socket.on('human_intervention_continue', function (data) {
+      var msg = 'Human intervention action received: continue protocol!';
+      console.log(msg, data);
+      messages.push(msg);
+      $('#box').html(JSON.stringify(messages, null, ' '));
+      // Continue with protocol. Human intervention is done.
+    });
+
+    socket.on('human_intervention_cancelled', function (data) {
+      var msg = 'Human intervention action received: Cancel protocol!';
+      console.log(msg, data);
+      messages.push(msg);
+      $('#box').html(JSON.stringify(messages, null, ' '));
+      // cancel protocol! Human intervention cancel the protocol.
+    });
+
+    function requireHumanIntervention () {
+      socket.emit('human_intervention_required', {text: 'Incuba los tubos de muestras a 56°C por 10 minutos y volve a ponerlos donde estaban.'});
+      console.log('enviado evento');
+      messages.push('Evento enviado. Esperando respuesta humana...');
+      $('#box').html(JSON.stringify(messages, null, ' '));
+    }
+
+    function sendAlert () {
+      socket.emit('alert', {text: 'Esto es una alerta o mensaje que viene del protcol2code'});
+      console.log('enviado evento');
+      messages.push('Alerta enviada.');
+      $('#box').html(JSON.stringify(messages, null, ' '));
+    }
+
+    function sendToolData () {
+      socket.emit('tool_data', {position: {x: 1, y: 4, z: 0, p: 4}});
+      console.log('enviado evento');
+      messages.push('Tool Data enviada.');
+      $('#box').html(JSON.stringify(messages, null, ' '));
+    }
+
+</script>
+  </head>
+  <body>
+  <h2>websocket demo client</h2>
+  <div>WS Status: <span id="status">Disconnected.</span></div>
+  <div>
+    <textarea cols="100" rows="20" id="box"></textarea>
+    <br>
+    <a onclick="return requireHumanIntervention()" href="#">Fire "Require Human Intervention" action.</a>
+    <br>
+    <a onclick="return sendAlert()" href="#">Fire "alert" action.</a>
+    <br>
+    <a onclick="return sendToolData()" href="#">Fire "toolData" action.</a>
+  </div>
+  </body>
+</html>

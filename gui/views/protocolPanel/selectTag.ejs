@@ -1,0 +1,32 @@
+<%
+
+var entryDeff = step.definition.source;
+var entryPath = 'source.value';
+if (entry === 'target') {
+	entryDeff = step.definition.target;
+	var entryPath = 'target.value';
+}
+
+function onlyUnique(value, index, self) {
+    return (self.indexOf(value) === index) && value;
+}
+
+%>
+
+<select onchange="updateStepEntryTag(this, '<%=entryPath%>' , '<%=escape(step.name)%>', '<%=step.type%>');" id="step-entry-<%=entry%>-<%=sid%>">
+  <option <%=('' === entryDeff.value ? 'selected':'')%> value="">Select One</option>
+<%
+var tags = [];
+for (var it=0;it<workspace.items.length; it++){
+	for (var c=0;c<workspace.items[it].content.length; c++){
+		var currentTags = workspace.items[it].content[c].tags;
+		if (entryDeff.item === '' || entryDeff.item === workspace.items[it].name) {
+			tags = tags.concat(currentTags);
+		}
+	}
+}
+tags = tags.filter(onlyUnique);
+for (var ti=0;ti < tags.length; ti++){%>
+<option <%=(tags[ti] === entryDeff.value ? 'selected':'')%> value="<%=escape(tags[ti])%>"><%=tags[ti]%></option>
+<%}%>
+</select>

@@ -1,0 +1,419 @@
+<% 
+
+function sort (steps) {
+  function compare( a, b ) {
+    if ( a.order < b.order ){
+      return -1;
+    }
+    if ( a.order > b.order ){
+      return 1;
+    }
+    return 0;
+  }
+
+  return steps.sort(compare);
+}
+
+function generateIdStep(protocol, step) {
+  return protocol.name.split(' ').join('_').split('.').join('_') + step.name.split(' ').join('_').split('.').join('_');
+}
+
+function drawSelectOption (current, value) {
+  return (current === value ? 'selected ':'') + `value=${value}`;
+}
+
+function getContentsInWorkspace (workspace, itemName, by, contentValue) {
+    let contents = [];
+    if (workspace && workspace.items && workspace.items.length) {
+      for (var i = 0; i < workspace.items.length; i++) {
+        if (workspace.items[i].name === itemName || itemName === '') {
+          if (workspace.items[i] && workspace.items[i].content && workspace.items[i].content.length) {
+            for (var j = 0; j < workspace.items[i].content.length; j++) {
+              if (by === 'name') {
+                if (workspace.items[i].content[j].name === contentValue) {
+                  contents.push({item: workspace.items[i].name, content: workspace.items[i].content[j]});
+                }
+              } else if (by === 'tag'){
+                if ((workspace.items[i].content[j].tags || []).indexOf(contentValue) > -1) {
+                  contents.push({item: workspace.items[i].name, content: workspace.items[i].content[j]});
+                }
+              }
+            }
+          }
+        }// end
+      }
+    }
+    return contents;
+  }
+
+function calculateSources (workspace, step) {
+  var contents = getContentsInWorkspace(workspace, step.definition.source.item, step.definition.source.by, step.definition.source.value);
+  return contents;
+}
+
+function calculateTargets (workspace, step) {
+  var contents = getContentsInWorkspace(workspace, step.definition.target.item, step.definition.target.by, step.definition.target.value);
+  return contents;
+}
+
+function calculateTargetsByTag (workspace, tag) {
+  var contents = getContentsInWorkspace(workspace, '', 'tag', tag);
+  return contents.length;
+}
+
+if (activeProtocol && activeProtocol.name) { %>
+<div class="col-12 no-gutters">
+  <div class="accordion" id="accordionProtocol">
+    <div id="protocolPanel">
+      <div class="item-title" id="heading-proto">
+          <div class="d-flex">
+              
+              <div class="" style="font-size: 16px;">
+                  <a class="btn btn-link btn-block text-left collapsed btn-sm" type="button" data-toggle="collapse" data-target="#collapse-proto" aria-expanded="true" aria-controls="collapse-proto">
+                  <h6 style="margin-bottom: 1px;"><i onclick="return expandProtocolPanel(event, '<%=escape(activeProtocol.name)%>');" class="fa fa-arrow-<%=protocolPanelExpandStatus === 'expanded' ? 'right' : 'left'%> expand-protocol-icon" id="expand-protocol-icon" aria-hidden="true"></i> Protocol Definition</h6>
+                </a>
+              </div>
+              <div class="ml-auto">
+                <i onclick="return saveProtocol();" style="color: #585259; margin-right: 3px;" class="fa fa-save edit-protocol-icon" aria-hidden="true"></i>
+                <i onclick="return editProtocol('<%=escape(activeProtocol.name)%>');" style="color: #585259; margin-right: 3px;" class="fa fa-edit edit-protocol-icon" aria-hidden="true"></i>
+                <i onclick="return closeProtocol('<%=escape(activeProtocol.name)%>');" style="color: #585259; margin-right: 3px;" class="fa fa-window-close edit-protocol-icon" aria-hidden="true"></i>
+              </div>
+          </div>
+      </div>
+      <div id="collapse-proto" class="collapse show" aria-labelledby="heading-proto" >
+        <div class="proto-details">
+          <h6>Name: <%=activeProtocol.name%></h6>
+          <% if (activeProtocol.template) { %>
+          <h6>Template: <strong><%=activeProtocol.template%></strong> <br></h6>
+          <div class="col-12 text-center no-gutters proto-bottom">
+            <button style="margin: 5px;" title="Edit Template" onclick="editProtocolTemplateUI();" type="button" class="btn btn-sm btn-success">Edit Template</button>
+          </div>  
+          <%  } %>
+
+
+            <%=activeProtocol.description%>
+        </div>
+        <div>
+          <%
+          var steps = activeProtocol.steps || [];
+          steps = sort(steps);
+          for (var i=0;i<steps.length; i++){
+            var step = steps[i];
+            var sid = generateIdStep(activeProtocol, step);
+            %>
+            <div onclick="return focusStep(this, '<%=sid%>', true);" id="<%=sid%>" class="ccstep step-list-item">
+             <div class="item-header">
+              <a alt="Move Step to another position" title="Move Step to another position" class="steporder" onclick='return changeStepOrder(this, <%=step.order%>)'>#<%=step.order%></a> <input onkeypress="return inputKeyPress(this, event)" onfocusout="return updateStepName(this, '<%=escape(step.name)%>', true, <%=escape(step.order)%>);" placeholder="name" id="nns_<%=sid%>" class="cool-input" type="text" value="<%=step.name%>"/>
+              <i title="Delete Step" alt="Delete Step" onclick="return deleteStep('<%=escape(step.name)%>', true)" class="fa fa-trash protocol-step-delete-icon" aria-hidden="true"></i>
+              <i title="Export Step" alt="Export Step" onclick="return exportStep('<%=escape(step.name)%>', true)" class="fa fa-plug protocol-step-plug-icon" aria-hidden="true"></i>
+             </div>
+             <div class="card-body" style="padding: 6px;">
+                      <div class="row">
+                        <div class="col-12">
+                          <strong>Type:</strong> <select onchange='return updateStepType(this, "<%=escape(step.name)%>");' class="form-control custom-select-sm" id="st_<%=sid%>">
+                                  <option <%=drawSelectOption(step.type, "")%>>Select one</option>
+                                  <option <%=drawSelectOption(step.type, "SIMPLE_PIPETTIN")%>>Simple Pipettin</option>
+                                  <option <%=drawSelectOption(step.type, "WAIT")%>>Wait</option>
+                                  <option <%=drawSelectOption(step.type, "HUMAN")%>>Human Intervention</option>
+                                  <option <%=drawSelectOption(step.type, "COMMENT")%>>Comment</option>
+                                  <option <%=drawSelectOption(step.type, "MIX")%>>Pipettin Mix</option>
+                                </select>
+                        </div>
+                      </div>
+                      <hr>
+                      <%
+                      switch (step.type) {
+                        case 'WAIT':
+                        %>
+                           <div id="simple-pip-form_<%=sid%>" class="row">
+                            <div class="col-12">
+                              
+                              <strong>Time to wait:</strong><br>
+                              <input onkeypress="return inputKeyPress(this, event)" onblur='updateStepSeconds(this, "<%=escape(step.name)%>")' class="step-vol" value="<%=step.definition.seconds%>" size="4" type='text'> seconds.
+                              <br>
+
+                            </div>
+                          </div>
+                          <%
+                        break;
+                        case 'COMMENT':
+                        %>
+                           <div id="simple-pip-form_<%=sid%>" class="row">
+                            <div class="col-12">
+                              
+                              <strong>Comment:</strong><br>
+                              <textarea onblur='updateStepComment(this, "<%=escape(step.name)%>")' class="step-vol" style="width: 100%;" rows="4"><%=step.definition.text%></textarea><br>
+                              (this step is just a comment in the Intermediate Level Protocol. And will be ignored.)
+                              <br>
+
+                            </div>
+                          </div>
+                          <%
+                        break;
+                        case 'HUMAN':
+                        %>
+                           <div id="simple-pip-form_<%=sid%>" class="row">
+                            <div class="col-12">
+                              
+                              <strong>Task description:</strong><br>
+                              <textarea onblur='updateStepComment(this, "<%=escape(step.name)%>")' class="step-vol" style="width: 100%;" rows="4"><%=step.definition.text%></textarea><br>
+                              (this step will pause the tool, show this task description to a Human and wait for a confirmation to continue with next step.)
+                              <br>
+
+                            </div>
+                          </div>
+                          <%
+                        break;
+                        case 'MIX':
+                        if (!step.definition) {
+                          continue;
+                        }
+                        %>
+                           <div id="simple-pip-form_<%=sid%>" class="row">
+                            <div class="col-12">
+                              
+                              <strong>Target:</strong><br>
+
+                                In <%- include('protocolPanel/selectItem', {entry: 'target', workspace: workspace, step: step, sid: sid}); %> item<br>
+                                with <select onchange='return updateStepTargetBy(this, "<%=escape(step.name)%>");' id="step-mixtarget-by_<%=sid%>">
+                                    <option <%=drawSelectOption(step.definition.target.by, "name")%>>name</option>
+                                    <option <%=drawSelectOption(step.definition.target.by, "tag")%>>tag</option>
+                                </select> equals to 
+                                <%
+                                if (step.definition.target.by === 'tag') {
+                                %><%- include('protocolPanel/selectTag', {entry: 'target', workspace: workspace, step: step, sid: sid}); %><%
+                                } else {
+                                %><%- include('protocolPanel/selectName', {entry: 'target', workspace: workspace, step: step, sid: sid}); %><%
+                                }
+                                
+                                var detectedTargets = calculateTargets(workspace, step);
+                                %><br>Detected Target(s): <strong><%=detectedTargets.length%></strong> <br>
+                                <hr/>
+                              <strong>Mix Type:</strong><br>
+                                <select onchange='return updateStepMixPorcentage(this, "<%=escape(step.name)%>");' id="step-mixporc-by_<%=sid%>">
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "100")%>>100%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "90")%>>90%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "80")%>>80%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "70")%>>70%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "60")%>>60%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "50")%>>50%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "40")%>>40%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "30")%>>30%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "20")%>>20%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "10")%>>10%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "5")%>>5%</option>
+                                  <option <%=drawSelectOption(step.definition.mix.percentage, "1")%>>1%</option>
+                                </select> of <select onchange='return updateStepMixType(this, "<%=escape(step.name)%>");' id="step-mixtype-by_<%=sid%>">
+                                    <option <%=drawSelectOption(step.definition.mix.type, "content")%>>Content volume</option>
+                                    <option <%=drawSelectOption(step.definition.mix.type, "tip")%>>Tip volume</option>
+                                </select>
+                                 </select> <select onchange='return updateStepMixCount(this, "<%=escape(step.name)%>");' id="step-mixtype-by_<%=sid%>">
+                                    <option <%=drawSelectOption(step.definition.mix.count, "1")%>>1</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "2")%>>2</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "3")%>>3</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "4")%>>4</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "5")%>>5</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "10")%>>10</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "20")%>>20</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "30")%>>30</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "40")%>>40</option>
+                                    <option <%=drawSelectOption(step.definition.mix.count, "50")%>>50</option>
+                                </select> time(s)
+                                <hr>
+                              <strong>Tips:</strong><br>
+                               Pick From: <%- include('protocolPanel/selectTipItem', {workspace: workspace, step: step, sid: sid}); %>
+                               <br>
+                               Discard To: <%- include('protocolPanel/selectTipDiscard', {workspace: workspace, step: step, sid: sid}); %>
+                               <br>
+                               Behavior: <select onchange='return updateStepTipMode(this, "<%=escape(step.name)%>");' id="step-tip-mode<%=sid%>">
+                                    <option <%=drawSelectOption(step.definition.tip.mode, "reuse")%>>Always re-use</option>
+                                    <option <%=drawSelectOption(step.definition.tip.mode, "isolated_targets")%>>Avoid Target contamination</option>
+                                </select><br>
+
+                                <%
+                                  switch(step.definition.tip.mode) {
+                                  case 'reuse':
+                                    %>(Will always re-use the tip mixing multiple targets in this step)<%
+                                  break;
+                                  case 'isolated_targets':
+                                    %>(Will change the tip after touch a target)<%
+                                  break;
+                                }
+                                %>
+                            </div>
+                          </div>
+                          <%
+                        break;
+                        case 'SIMPLE_PIPETTIN':
+                        %>
+                           <div id="simple-pip-form_<%=sid%>" class="row">
+                            <div class="col-12">
+                              
+                              <strong>Source:</strong><br>
+
+                                In <%- include('protocolPanel/selectItem', {entry: 'source', workspace: workspace, step: step, sid: sid}); %> item<br>
+                                with <select onchange='return updateStepSourceBy(this, "<%=escape(step.name)%>");' id="step-source-by_<%=sid%>">
+                                  <option <%=drawSelectOption(step.definition.source.by, "name")%>>name</option>
+                                  <option <%=drawSelectOption(step.definition.source.by, "tag")%>>tag</option>
+                                </select> equals to 
+                                <%
+                                if (step.definition.source.by === 'tag') {
+                                %><%- include('protocolPanel/selectTag', {entry: 'source', workspace: workspace, step: step, sid: sid}); %><%
+                                } else {
+                                %><%- include('protocolPanel/selectName', {entry: 'source', workspace: workspace, step: step, sid: sid}); %><%
+                                }
+                                
+                                var detectedSources = calculateSources(workspace, step);
+                                %><br>Detected Source(s): <strong><%=detectedSources.length%></strong> <br>
+
+                                <%if (detectedSources.length > 1) {
+                                  %> Multiples sources detected. How do you want to treat them? 
+                                  <select onchange='return updateStepSourceTreatAs(this, "<%=escape(step.name)%>");' id="step-source-treat_<%=sid%>">
+                                  <option <%=drawSelectOption(step.definition.source.treatAs, "same")%>>Treat all like a unique resource</option>
+                                  <option <%=drawSelectOption(step.definition.source.treatAs, "for_each")%>>Iterate this step for each source</option>
+                                </select>
+
+                                <% } %>
+                                <hr/>
+                              <strong>Target:</strong><br>
+
+                                In <%- include('protocolPanel/selectItem', {entry: 'target', workspace: workspace, step: step, sid: sid}); %> item<br>
+                                with <select onchange='return updateStepTargetBy(this, "<%=escape(step.name)%>");' id="step-target-by_<%=sid%>">
+                                    <option <%=drawSelectOption(step.definition.target.by, "name")%>>name</option>
+                                    <option <%=drawSelectOption(step.definition.target.by, "tag")%>>tag</option>
+                                </select> equals to 
+                                <%
+                                if (step.definition.target.by === 'tag') {
+                                %><%- include('protocolPanel/selectTag', {entry: 'target', workspace: workspace, step: step, sid: sid}); %><%
+                                } else {
+                                %><%- include('protocolPanel/selectName', {entry: 'target', workspace: workspace, step: step, sid: sid}); %><%
+                                }
+                                
+                                var detectedTargets = calculateTargets(workspace, step);
+                                %><br>Detected Target(s): <strong><%=detectedTargets.length%></strong> <br>
+                                <hr/>
+                              <strong>Volume:</strong><br>
+                               <input onkeypress="return inputKeyPress(this, event)" onblur='updateStepVolume(this, "<%=escape(step.name)%>")' class="step-vol" value="<%=step.definition.volume.value%>" size="4" type='text'> µl
+                               <select onchange='return updateStepVolumeType(this, "<%=escape(step.name)%>");' id="step-target-by_<%=sid%>">
+                                    <option <%=drawSelectOption(step.definition.volume.type, "fixed_each")%>>to each target</option>
+                                    <option <%=drawSelectOption(step.definition.volume.type, "fixed_total")%>>in total</option>
+                                    <option <%=drawSelectOption(step.definition.volume.type, "for_each_target_tag")%>>for each</option>
+                                </select>
+                                <% if (step.definition.volume.type === 'for_each_target_tag') {%>
+                                content with tag <%-include('protocolPanel/selectVolumeTag', {workspace: workspace, step: step, sid: sid}); %>
+                                <%}
+
+                                switch(step.definition.volume.type) {
+                                  case 'fixed_each':
+                                    %><br>(<% if (detectedTargets.length === 0) {%>0µl to each target)<%}else {%><%=step.definition.volume.value%>µl to each target)<%}
+                                  break;
+                                  case 'fixed_total':
+                                    %><br>(<% if (detectedTargets.length === 0) {%>0<%}else {%><%=(step.definition.volume.value/detectedTargets.length)%><%} %>µl to each target)<%
+                                  break;
+                                  case 'for_each_target_tag':
+                                    %><br>(<% if (detectedTargets.length === 0) {%>0<%}else {%><%=(step.definition.volume.value * calculateTargetsByTag(workspace,step.definition.volume.tag ))%><%} %>µl to each target)<%
+                                  break;
+                                }
+                                %>
+                                <hr/>
+                              <strong>Tips:</strong><br>
+                               Pick From: <%- include('protocolPanel/selectTipItem', {workspace: workspace, step: step, sid: sid}); %>
+                               <br>
+                               Discard To: <%- include('protocolPanel/selectTipDiscard', {workspace: workspace, step: step, sid: sid}); %>
+                               <br>
+                               Behavior: <select onchange='return updateStepTipMode(this, "<%=escape(step.name)%>");' id="step-tip-mode<%=sid%>">
+                                    <option <%=drawSelectOption(step.definition.tip.mode, "reuse")%>>Always re-use</option>
+                                    <option <%=drawSelectOption(step.definition.tip.mode, "isolated_targets")%>>Avoid Target contamination</option>
+                                    <option <%=drawSelectOption(step.definition.tip.mode, "isolated_source_only")%>>Only avoid Source contamination</option>
+                                    <% if (step.definition.source.treatAs === 'for_each'){ %> 
+                                      <option <%=drawSelectOption(step.definition.tip.mode, "reuse_same_source")%>>Re-use only for same source</option>
+                                    <%}%>
+                                </select><br>
+
+                                <%
+                                  switch(step.definition.tip.mode) {
+                                  case 'reuse':
+                                    %>(Will always re-use the tip in this step)<%
+                                  break;
+                                  case 'isolated_targets':
+                                    %>(Will change the tip after touch a target)<%
+                                  break;
+                                  case 'isolated_source_only':
+                                   %>(Will change the tip before touch a source. May touch several targets with the same tip)<%
+                                  break;
+                                  case 'reuse_same_source':
+                                   %>(Will re-use the tip to load multiple times from the same source if target is the same. Will change the tip for different targets)<%
+                                  break;
+                                }
+                                %>
+                            </div>
+                          </div>
+                        <%
+                        break;
+                      }
+                      %>
+                     
+              </div>
+            </div>
+          <%}%>
+        </div>
+        <div class="col-12 text-center no-gutters proto-bottom">
+          <button style="margin: 5px;" title="Add Step" onclick="addStep('<%=escape(activeProtocol.name)%>');" type="button" class="btn btn-sm btn-success">Add Step</button>
+          <br>
+          <button style="margin: 5px;" title="Save Protocol" onclick="saveProtocol();" type="button" class="btn btn-sm btn-primary">Save Protocol</button>
+          <br>
+          <button style="margin: 5px;" title="View Output" onclick="viewProtocolOutput();" type="button" class="btn btn-sm btn-primary">View Output</button>
+          <br>
+          <button style="margin: 5px;" title="RUN" onclick="runProtocol();" type="button" class="btn btn-sm btn-danger">RUN PROTOCOL</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%} else {%>
+
+  <h5>Protocols</h5>
+  <div class="col-12 text-center no-gutters">
+      <button onclick="" data-toggle="modal" data-target="#new-protocol-modal" type="button" class="btn btn-sm btn-primary btn-block">Create New Protocol</button>
+      <button onclick="return importProtocol();" type="button" class="btn btn-sm btn-primary btn-lg btn-block">Import</button>
+  </div>
+
+  <hr>
+  <h6>Protocols using this workspace</h6>
+
+  <%if (workspaceHLprotocols && workspaceHLprotocols.length) {%>
+
+    <div class="col-12 no-gutters">
+      <table class="table table-sm table-hover table-borderless table-striped">
+         <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th style="text-align: right;" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%for (var i=0;i<workspaceHLprotocols.length; i++){
+              var protocolData = workspaceHLprotocols[i];
+            %>
+                <tr style="border-top: 1px solid;">
+                  <td class="proto-name-list"><%=protocolData.name%></td>
+                </tr>
+                <tr><td style="text-align: right;">
+                    <button title="Load" onclick="loadProtocol('<%=escape(protocolData.name)%>');" type="button" class="btn btn-sm btn-primary"><i class="fas fa-plug"></i></button>
+                    <button title="Export" onclick="exportProtocol('<%=escape(protocolData.name)%>');" type="button" class="btn btn-sm btn-primary"><i class="fas fa-file-download"></i></button>
+                    <button onclick="deleteProtocol('<%=escape(protocolData.name)%>');" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+            <%}%>
+          </tbody>
+      </table>
+    </div>
+  <%} else {%>
+    <div class="col-12 text-center no-gutters">
+      <span>There is no protocols for this workspace.</span>
+    </div>
+  <%}
+}%>
+

@@ -1,0 +1,23 @@
+<%
+
+var entryDeff = step.definition.source;
+var entryPath = 'source.value';
+if (entry === 'target') {
+	entryDeff = step.definition.target;
+	var entryPath = 'target.value';
+}
+%>
+
+<select onchange="updateStepEntryName(this, '<%=entryPath%>' , '<%=escape(step.name)%>', '<%=step.type%>');" id="step-entry-<%=entry%>-<%=sid%>">
+<option <%=('' === entryDeff.value ? 'selected':'')%> value="">Select One</option>
+
+<%
+for (var it=0;it<workspace.items.length; it++){
+for (var c=0;c<workspace.items[it].content.length; c++){
+var content = workspace.items[it].content[c];
+if (entryDeff.item === '' || entryDeff.item === workspace.items[it].name) {
+%>
+<option <%=(content.name === entryDeff.value ? 'selected':'')%> value="<%=escape(content.name)%>"><%=content.name%></option>
+
+<%}}}%>
+</select>

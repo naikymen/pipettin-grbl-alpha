@@ -1,0 +1,10 @@
+{
+  "port": 3333,
+  "basicAuthUser": "",
+  "basicAuthPass": "",
+  "sslKeyFile": null,
+  "sslCertFile": null,
+  "mongo": "mongodb://localhost:27017",
+  "protocol2gcodePath": "../protocol2gcode/commander.py",
+  "communicationMode": "ws"
+}

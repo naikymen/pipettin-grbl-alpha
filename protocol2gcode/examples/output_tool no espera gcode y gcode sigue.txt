@@ -1,0 +1,868 @@
+commanderTest.py called, initiating...
+args.port: /dev/ttyACM0
+args.baudrate: 115200
+args.workspace: None
+args.item: None
+args.content: None
+args.calibration: None
+args.run-protocol: p200_pipetting_height_calib 2021-03-04T20:22:18.847Z
+args.command: None
+args.move: None
+args.distance: None
+args.home: None
+args.interactive: False
+args.dry: False
+commanderTest.py message: Provided protocol name: 'p200_pipetting_height_calib 2021-03-04T20:22:18.847Z'
+
+commanderTest.py message: Connecting to mongodb
+
+commanderTest.py message: Init protocol task class
+
+Hi! initializing the pipettin 'task object'.
+
+commanderTest.py message: Generate GCODE
+
+
+Processing command HOME with index 0
+  HOME action supplied without action.args.which; defaulting to 'all'
+Processed actionHOME with index 0
+
+Processing command PICK_TIP with index 1
+Processed macroPickNextTip action with index 1
+
+Processing command LOAD_LIQUID with index 2
+Processed macroGoToAndPipette action with index 2
+
+Processing command DROP_LIQUID with index 3
+Processed macroGoToAndPipette action with index 3
+
+Processing command DISCARD_TIP with index 4
+Processed actionDISCARD_TIP with index 4
+
+Processing command COMMENT with index 5
+Processed actionComment with index 5 and text: 'End step: step1'
+
+Processing command HOME with index 6
+  HOME action supplied without action.args.which; defaulting to 'all'
+Processed actionHOME with index 6
+('; Building action 0, with command: HOME\n'
+ '$H\n'
+ 'Phome;14.8\n'
+ 'G92 X0 Y0 Z125\n'
+ '; Building action 1, with command: PICK_TIP\n'
+ 'G90 G0 Z60.5\n'
+ 'G90 G0 X85.96 Y20.869999999999997\n'
+ 'G90 G0 Z32\n'
+ 'G38.3 Z-6 F200\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 2, with command: LOAD_LIQUID\n'
+ 'G90 G0 Z110.5\n'
+ 'G90 G0 X160.2 Y80.0\n'
+ 'G90 G0 Z20\n'
+ 'Pmove;5.570423008216337\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 3, with command: DROP_LIQUID\n'
+ 'G90 G0 Z110.5\n'
+ 'G90 G0 X160.2 Y53.599999999999994\n'
+ 'G90 G0 Z20\n'
+ 'Pmove;-5.570423008216337\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 4, with command: DISCARD_TIP\n'
+ 'G90 G0 Z110.5\n'
+ 'G90 G0 X69.0 Y141.0\n'
+ 'G90 G0 Z46\n'
+ 'Peject;\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 5, with command: COMMENT\n'
+ '; Building action 6, with command: HOME\n'
+ '$H\n'
+ 'Phome;14.8\n'
+ 'G92 X0 Y0 Z125')
+
+commanderTest.py message: Sending protocol
+
+Pipette axis init
+Pipette axis ready!
+
+
+driver message:
+    Connecting to/dev/ttyACM0 at 115200
+
+driver message:
+    Waking GRBL...
+
+driver message:
+    Resetting input buffer...
+
+driver message:
+    Setting up monitor thread events and queues...
+
+driver message:
+    Starting threads...
+
+serial_reader:
+    waiting for running_event...
+serial_writer:
+    writer thread started waiting for running_event...
+
+
+periodic_report:
+    waiting for running_event...
+driver message:
+    Setting thread run event...
+
+driver message:
+    Waiting for status report...
+serial_writer:
+    enabled running_event, waiting for commands from input_queue
+
+
+serial_reader:
+    running_event is set! polling serial_interface continuously...
+
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,124.990|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,124.990|F:0>
+
+driver message:
+    GRBL reports IDLE or ok :)
+
+Protocol step 1 of 33
+Next protocol command is:
+ ; Building action 0, with command: HOME
+
+serial_writer:
+    Got command from parser: $1=255
+
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Waiting for unfinished tasks...$1=255
+
+serial_writer:
+    Sending command to serial write: $1=255
+
+serial_writer:
+    Waiting for input queue join with unfinished_tasks: 1
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_writer:
+    Waiting for idle_event: 0
+
+serial_writer:
+    Unlocking gcode block...
+
+serial_writer:
+    Done sending command: $1=255. Remaining buffer: 120
+
+Protocol step 2 of 33
+Next protocol command is:
+ $H
+
+Sending command to serial_writer queue: $H
+
+Done sending command to serial_writer queue: $H
+
+serial_writer:
+    Got command from parser: $H
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Waiting for unfinished tasks...$H
+
+serial_writer:
+    Sending command to serial write: $H
+
+serial_writer:
+    Waiting for input queue join with unfinished_tasks: 1
+
+Protocol step 3 of 33
+Next protocol command is:
+ Phome;14.8
+
+serial_reader:
+    OK received, remaining tasks: 0
+serial_writer:
+    Waiting for idle_event: 0
+
+serial_writer:
+    Unlocking gcode block...
+
+serial_writer:
+    Done sending command: $H. Remaining buffer: 124
+Homing pipette (after GRBL idle)...
+
+Pipette homing done!
+
+Protocol step 4 of 33
+Next protocol command is:
+ G92 X0 Y0 Z125
+
+Sending command to serial_writer queue: G92 X0 Y0 Z125
+
+Done sending command to serial_writer queue: G92 X0 Y0 Z125
+
+serial_writer:
+    Got command from parser: G92 X0 Y0 Z125
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G92X0Y0Z125
+
+serial_writer:
+    Done sending command: G92X0Y0Z125. Remaining buffer: 115
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 5 of 33
+Next protocol command is:
+ ; Building action 1, with command: PICK_TIP
+
+Protocol step 6 of 33
+Next protocol command is:
+ G90 G0 Z60.5
+
+Sending command to serial_writer queue: G90 G0 Z60.5
+
+Done sending command to serial_writer queue: G90 G0 Z60.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z60.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z60.5
+
+serial_writer:
+    Done sending command: G90G0Z60.5. Remaining buffer: 116
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 7 of 33
+Next protocol command is:
+ G90 G0 X85.96 Y20.869999999999997
+
+Sending command to serial_writer queue: G90 G0 X85.96 Y20.869999999999997
+
+Done sending command to serial_writer queue: G90 G0 X85.96 Y20.869999999999997
+
+serial_writer:
+    Got command from parser: G90 G0 X85.96 Y20.869999999999997
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0X85.96Y20.869999999999997
+
+serial_writer:
+    Done sending command: G90G0X85.96Y20.869999999999997. Remaining buffer: 96
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 8 of 33
+Next protocol command is:
+ G90 G0 Z32
+
+Sending command to serial_writer queue: G90 G0 Z32
+
+Done sending command to serial_writer queue: G90 G0 Z32
+
+serial_writer:
+    Got command from parser: G90 G0 Z32
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z32
+
+serial_writer:
+    Done sending command: G90G0Z32. Remaining buffer: 118
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 9 of 33
+Next protocol command is:
+ G38.3 Z-6 F200
+
+Sending command to serial_writer queue: G38.3 Z-6 F200
+
+Done sending command to serial_writer queue: G38.3 Z-6 F200
+
+serial_writer:
+    Got command from parser: G38.3 Z-6 F200
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G38.3Z-6F200
+
+serial_writer:
+    Done sending command: G38.3Z-6F200. Remaining buffer: 114
+
+Protocol step 10 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 102
+
+Protocol step 11 of 33
+Next protocol command is:
+ ; Building action 2, with command: LOAD_LIQUID
+
+Protocol step 12 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 90
+
+Protocol step 13 of 33
+Next protocol command is:
+ G90 G0 X160.2 Y80.0
+
+Sending command to serial_writer queue: G90 G0 X160.2 Y80.0
+
+Done sending command to serial_writer queue: G90 G0 X160.2 Y80.0
+
+serial_writer:
+    Got command from parser: G90 G0 X160.2 Y80.0
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0X160.2Y80.0
+
+serial_writer:
+    Done sending command: G90G0X160.2Y80.0. Remaining buffer: 73
+
+Protocol step 14 of 33
+Next protocol command is:
+ G90 G0 Z20
+
+Sending command to serial_writer queue: G90 G0 Z20
+
+Done sending command to serial_writer queue: G90 G0 Z20
+
+serial_writer:
+    Got command from parser: G90 G0 Z20
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z20
+
+serial_writer:
+    Done sending command: G90G0Z20. Remaining buffer: 64
+
+Protocol step 15 of 33
+Next protocol command is:
+ Pmove;5.570423008216337
+Pipetting (after GRBL idle)...
+
+serial_reader:
+    Line received, not classified: [PRB:-182.050,-367.125,-106.490:1]
+
+serial_reader:
+    OK received, remaining tasks: 4
+
+serial_reader:
+    OK received, remaining tasks: 3
+
+serial_reader:
+    OK received, remaining tasks: 2
+
+serial_reader:
+    OK received, remaining tasks: 1
+
+serial_reader:
+    OK received, remaining tasks: 0
+Pipetting done!
+
+Protocol step 16 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 115
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 17 of 33
+Next protocol command is:
+ ; Building action 3, with command: DROP_LIQUID
+
+Protocol step 18 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 115
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 19 of 33
+Next protocol command is:
+ G90 G0 X160.2 Y53.599999999999994
+
+Sending command to serial_writer queue: G90 G0 X160.2 Y53.599999999999994
+
+Done sending command to serial_writer queue: G90 G0 X160.2 Y53.599999999999994
+
+serial_writer:
+    Got command from parser: G90 G0 X160.2 Y53.599999999999994
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0X160.2Y53.599999999999994
+
+serial_writer:
+    Done sending command: G90G0X160.2Y53.599999999999994. Remaining buffer: 96
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 20 of 33
+Next protocol command is:
+ G90 G0 Z20
+
+Sending command to serial_writer queue: G90 G0 Z20
+
+Done sending command to serial_writer queue: G90 G0 Z20
+
+serial_writer:
+    Got command from parser: G90 G0 Z20
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z20
+
+serial_writer:
+    Done sending command: G90G0Z20. Remaining buffer: 118
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 21 of 33
+Next protocol command is:
+ Pmove;-5.570423008216337
+Pipetting (after GRBL idle)...
+Pipetting done!
+
+Protocol step 22 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 115
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 23 of 33
+Next protocol command is:
+ ; Building action 4, with command: DISCARD_TIP
+
+Protocol step 24 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 115
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 25 of 33
+Next protocol command is:
+ G90 G0 X69.0 Y141.0
+
+Sending command to serial_writer queue: G90 G0 X69.0 Y141.0
+
+Done sending command to serial_writer queue: G90 G0 X69.0 Y141.0
+
+serial_writer:
+    Got command from parser: G90 G0 X69.0 Y141.0
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0X69.0Y141.0
+
+serial_writer:
+    Done sending command: G90G0X69.0Y141.0. Remaining buffer: 110
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 26 of 33
+Next protocol command is:
+ G90 G0 Z46
+
+Sending command to serial_writer queue: G90 G0 Z46
+
+Done sending command to serial_writer queue: G90 G0 Z46
+
+serial_writer:
+    Got command from parser: G90 G0 Z46
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z46
+
+serial_writer:
+    Done sending command: G90G0Z46. Remaining buffer: 118
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 27 of 33
+Next protocol command is:
+ Peject;
+Ejecting tip (after GRBL idle)...
+Tip ejected!
+
+Protocol step 28 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 115
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 29 of 33
+Next protocol command is:
+ ; Building action 5, with command: COMMENT
+
+Protocol step 30 of 33
+Next protocol command is:
+ ; Building action 6, with command: HOME
+
+Protocol step 31 of 33
+Next protocol command is:
+ $H
+
+Sending command to serial_writer queue: $H
+
+Done sending command to serial_writer queue: $H
+
+serial_writer:
+    Got command from parser: $H
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Waiting for unfinished tasks...$H
+
+serial_writer:
+    Sending command to serial write: $H
+
+serial_writer:
+    Waiting for input queue join with unfinished_tasks: 1
+
+serial_reader:
+    error line received: error:8 Description: 8: Grbl '$' command cannot be used unless Grbl is IDLE. Ensures smooth operation during a job.
+
+GRBL error exception called during protocol streaming:
+     GRBL error: the machine needs to be reset: Alert during protocol streaming: GRBL's state is alarming! 
+
+Protocol loop ended. Cleaning up!
+
+
+---- tire Ctrl-C dos veces
+
+^Cwebsocket disconnected HF-_DNjws2ZQe1wmAAAH {}
+Traceback (most recent call last):
+  File "/home/pi/pipettin-grbl/protocol2gcode/gcodeSender.py", line 363, in gcodeProtocolSend
+    raise GrblError("Alert during protocol streaming: GRBL's state is alarming!")
+gcodeSender_utils.GrblError: GRBL error: the machine needs to be reset: Alert during protocol streaming: GRBL's state is alarming! 
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/pipettin-grbl/protocol2gcode/gcodeSender.py", line 530, in gcodeProtocolSend
+    sys.exit(1)
+SystemExit: 1
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "../protocol2gcode/commanderTest.py", line 278, in <module>
+    dry=args.dry, verbose=verbose)
+  File "/home/pi/pipettin-grbl/protocol2gcode/gcodeSender.py", line 542, in gcodeProtocolSend
+    gcode_unlock.wait()
+  File "/usr/lib/python3.7/threading.py", line 552, in wait
+    signaled = self._cond.wait(timeout)
+  File "/usr/lib/python3.7/threading.py", line 296, in wait
+    waiter.acquire()
+  File "/home/pi/.local/lib/python3.7/site-packages/engineio/client.py", line 41, in signal_handler
+    return original_signal_handler(sig, frame)
+  File "/home/pi/.local/lib/python3.7/site-packages/socketio/client.py", line 26, in signal_handler
+    return original_signal_handler(sig, frame)
+KeyboardInterrupt
+^CException ignored in: <module 'threading' from '/usr/lib/python3.7/threading.py'>
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/threading.py", line 1281, in _shutdown
+    t.join()
+  File "/usr/lib/python3.7/threading.py", line 1032, in join
+    self._wait_for_tstate_lock()
+  File "/usr/lib/python3.7/threading.py", line 1048, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+  File "/home/pi/.local/lib/python3.7/site-packages/engineio/client.py", line 41, in signal_handler
+    return original_signal_handler(sig, frame)
+  File "/home/pi/.local/lib/python3.7/site-packages/socketio/client.py", line 26, in signal_handler
+    return original_signal_handler(sig, frame)
+KeyboardInterrupt
+2021-03-04T20:38:41.747+0000 I NETWORK  [conn152] end connection 127.0.0.1:57396 (4 connections now open)
+2021-03-04T20:38:41.747+0000 I NETWORK  [conn151] end connection 127.0.0.1:57394 (4 connections now open)

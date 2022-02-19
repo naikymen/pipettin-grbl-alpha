@@ -1,0 +1,296 @@
+<div style="max-width: 80%">
+
+  <form id="templateProtocolForm" class="needs-validation" onsubmit="return saveTemplateProtocol();">   
+    <div class="row mb-3">          
+      <label for="platform1" class="col-sm-2 col-form-label">1.5ml tubes Platform</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="platform1">
+        <optGroup label="Currently in workspace">
+        <% workspace.items.forEach(function (i) {
+          if (i.platformData.type === 'TUBE_RACK') {
+          %>
+          <option <%=(i.name === protocol.templateDefinition.tube15Platform ? 'selected':'')%> value="<%=i.name%>"><%=i.name%></option>
+        <%}})%>
+          </optGroup>
+          <optGroup label="Insert one for me">
+          <% platforms.forEach(function (i) { 
+            if (i.type === 'TUBE_RACK') {
+          %>
+            <option <%=(i.name === protocol.templateDefinition.tube15Platform ? 'selected':'')%> value="_CREATE_<%=i.name%>"><%=i.name%></option>
+          <%}})%>
+          </optGroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="platform2" class="col-sm-2 col-form-label">PCR tubes Platform</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="platform2">
+           <optGroup label="Currently in workspace">
+            <% workspace.items.forEach(function (i) {
+              if (i.platformData.type === 'TUBE_RACK') {
+            %>
+              <option <%=(i.name === protocol.templateDefinition.PCRtubePlatform ? 'selected':'')%> value="<%=i.name%>"><%=i.name%></option>
+            <%}})%>
+          </optGroup>
+          <optGroup label="Insert one for me">
+           <% platforms.forEach(function (i) { 
+            if (i.type === 'TUBE_RACK') {
+          %>
+            <option <%=(i.name === protocol.templateDefinition.PCRtubePlatform ? 'selected':'')%> value="_CREATE_<%=i.name%>"><%=i.name%></option>
+           <%}})%>
+          </optGroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="platform2" class="col-sm-2 col-form-label">Tips</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="platform3">
+           <optGroup label="Currently in workspace">
+             <% workspace.items.forEach(function (i) {
+              if (i.platformData.type === 'TIP_RACK') {
+          %>
+              <option <%=(i.name === protocol.templateDefinition.tipsPlatform ? 'selected':'')%> value="<%=i.name%>"><%=i.name%></option>
+            <%}})%>
+          </optGroup>
+          <optGroup label="Insert one for me">
+            <% platforms.forEach(function (i) { 
+              if (i.type === 'TIP_RACK') {
+          %>
+              <option <%=(i.name === protocol.templateDefinition.tipsPlatform ? 'selected':'')%> value="_CREATE_<%=i.name%>"><%=i.name%></option>
+            <%}})%>
+          </optGroup>
+        </select>
+      </div>
+    </div>
+
+     <div class="row mb-3">
+      <label for="platform2" class="col-sm-2 col-form-label">Trash</label>
+      <div class="col-sm-10">
+        <select class="form-control" id="platform4">
+           <optGroup label="Currently in workspace">
+            <% workspace.items.forEach(function (i) { 
+               if (i.platformData.type === 'BUCKET') {
+          %>
+              <option <%=(i.name === protocol.templateDefinition.trashPlatform ? 'selected':'')%> value="<%=i.name%>"><%=i.name%></option>
+            <%}})%>
+          </optGroup>
+          <optGroup label="Insert one for me">
+           <% platforms.forEach(function (i) { 
+             if (i.type === 'BUCKET') {
+          %>
+            <option <%=(i.name === protocol.templateDefinition.trashPlatform ? 'selected':'')%> value="_CREATE_<%=i.name%>"><%=i.name%></option>
+          <%}})%>
+          </optGroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="loren" class="col-sm-2 col-form-label">Final Vol. x Reacc.</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="text" class="form-control" id="final_vol" name="final_vol" aria-describedby="final_vol" value="<%=protocol.templateDefinition.finalVol%>" required> 
+          <div class="input-group-text">uL</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="loren" class="col-sm-2 col-form-label">Vol. Loss Comp. Frac.</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+            <input type="text" class="form-control" id="volLossCompensation" name="volLossCompensation" aria-describedby="volLossCompensation" value="<%=protocol.templateDefinition.volLossCompensation%>" required> 
+            <div class="input-group-text">ej: 0.1</div>
+          </div>
+        </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+
+    <div class="row mb-3">  
+      <label for="loren" class="col-sm-2 col-form-label">dNTPs</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Conc. Stock</div>
+          <input type="text" class="form-control" id="dntps_stock" name="dntps_stock" aria-describedby="dntps_stock" value="<%=protocol.templateDefinition.dntpsStock%>" required> 
+          <div class="input-group-text">mM</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Conc. Final</div>
+          <input type="text" class="form-control" id="dntps_final" name="dntps_final" aria-describedby="dntps_final" value="<%=protocol.templateDefinition.dntpsFinal%>" required> 
+          <div class="input-group-text">mM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">  
+      <label for="loren" class="col-sm-2 col-form-label">Primer</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Conc. Stock</div>
+          <input type="text" class="form-control" id="primer_stock" name="primer_stock" aria-describedby="primer_stock" value="<%=protocol.templateDefinition.primerStock%>" required> 
+          <div class="input-group-text">mM</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Conc. Final</div>
+          <input type="text" class="form-control" id="primer_final" name="primer_final" aria-describedby="primer_final" value="<%=protocol.templateDefinition.primerFinal%>" required> 
+          <div class="input-group-text">mM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">  
+      <label for="loren" class="col-sm-2 col-form-label">Pol.</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Vol. Reacc.</div>
+          <input type="text" class="form-control" id="pol_vol" name="pol_vol" aria-describedby="pol_vol" value="<%=protocol.templateDefinition.polVol%>" required> 
+          <div class="input-group-text">uL</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+
+    <div class="row mb-3">  
+      <label for="loren" class="col-sm-2 col-form-label">Template</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Vol. Reacc.</div>
+          <input type="text" class="form-control" id="template_vol" name="template_vol" aria-describedby="template_vol" value="<%=protocol.templateDefinition.templateVol%>" required> 
+          <div class="input-group-text">uL</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+
+      </div>
+    </div>
+
+     <div class="row mb-3">  
+      <label for="loren" class="col-sm-2 col-form-label">Buffer</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Conc. Stock</div>
+          <input type="text" class="form-control" id="buffer_stock" name="buffer_stock" aria-describedby="buffer_stock" value="<%=protocol.templateDefinition.bufferStock%>" required> 
+          <div class="input-group-text">x</div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+         <div class="input-group-text">Conc. Final</div>
+          <input type="text" class="form-control" id="buffer_final" name="buffer_final" aria-describedby="buffer_final" value="1" disabled required> 
+          <div class="input-group-text">x</div>
+        </div>
+      </div>
+    </div>
+
+
+    <hr>
+    <h5>Component Groups</h5>
+    <small> Note: use  comma `,` to define multiples combinations </small>
+
+    <div id="component-groups">
+
+      <% if (protocol.templateDefinition && protocol.templateDefinition.components && protocol.templateDefinition.components.length > 0) {
+        for (var i=0; i< protocol.templateDefinition.components.length; i++) {
+          var component = protocol.templateDefinition.components[i];
+          %>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" name="itemNames[]" placeholder="Name" aria-label="Name" value="<%=component.name%>" required>
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="fwPrimers[]" placeholder="Forward Primer" aria-label="Forward Primer" value="<%=component.fwPrimers.join(',')%>" required>
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="rvPrimers[]" placeholder="Reverse Primer" aria-label="Reverse Primer" value="<%=component.rvPrimers.join(',')%>"  required>
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="templates[]" placeholder="Template" aria-label="Template" value="<%=component.templates.join(',')%>"  required>
+              </div>
+              <div class="col">
+              <button onclick="this.parentNode.parentNode.remove();" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+        <%}%>
+      <% } else { %>
+
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" name="itemNames[]" placeholder="Name" aria-label="Name" required>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="fwPrimers[]" placeholder="Forward Primer" aria-label="Forward Primer" required>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="rvPrimers[]" placeholder="Reverse Primer" aria-label="Reverse Primer" required>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" name="templates[]" placeholder="Template" aria-label="Template" required>
+        </div>
+        <div class="col">
+        <button onclick="this.parentNode.parentNode.remove();" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+        </div>
+      </div>
+
+      <%}%>
+
+    </div>
+    <br>
+    <button type="button" class="btn btn-sm btn-success" onclick="return addGroupItemToTemplate()">Add item</button>
+
+    <div class="col-12" style="display: none;">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="regenerateWorkspace" name="regenerateWorkspace" <%=(true === protocol.templateDefinition.latestRegenerateWorkflow ? 'checked':'')%>>
+        <label class="form-check-label" for="regenerateWorkspace">
+          Clean and re-generate Workspace
+        </label>
+      </div>
+    </div>
+
+    <div class="col-12" style="display: none;">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="regenerateProtocol" name="regenerateProtocol" <%=(true === protocol.templateDefinition.latestRegenerateProtocol ? 'checked':'')%>>
+        <label class="form-check-label" for="regenerateProtocol">
+          Clean and re-generate Protocol steps
+        </label>
+      </div>
+    </div>
+
+    <hr>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+    
+  </form>
+
+</div>
+
+<template id="componentItemForTemplates">
+ <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" name="itemNames[]"  placeholder="Name" aria-label="Name" required>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="fwPrimers[]" placeholder="Forward Primer" aria-label="Forward Primer" required>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="rvPrimers[]" placeholder="Reverse Primer" aria-label="Reverse Primer" required>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" name="templates[]" placeholder="Template" aria-label="Template" required>
+      </div>
+       <div class="col">
+       <button onclick="this.parentNode.parentNode.remove();" type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+       </div>
+    </div>
+</template>

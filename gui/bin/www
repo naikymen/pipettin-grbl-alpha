@@ -1,0 +1,140 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const app = require('../app');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const config = require('config');
+// var redis = require('socket.io-redis');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || config.port);
+app.set('port', port);
+
+/**
+ * Create server.
+ */
+let server = http.createServer(app);
+const io = require('socket.io')(server);
+
+// rooms suscription
+io.use((client, next) => {
+  client.join('unauthenticated');
+  client.join('global');
+  return next();
+});
+
+// io.adapter(redis(config.redis));
+io.on('connection', function (client) {
+  console.log('websocket connected!', client.id, client.rooms);
+  client.emit('welcome', { welcome: true, ok: true });
+  client.on('disconnect', function () {
+    console.log('websocket disconnected', client.id, client.rooms);
+  });
+
+  // bordcast some events to other clients:
+  client.on('human_intervention_required', function (data) {
+    io.emit('human_intervention_required', data);
+  });
+  client.on('human_intervention_cancelled', function (data) {
+    io.emit('human_intervention_cancelled', data);
+  });
+  client.on('human_intervention_continue', function (data) {
+    io.emit('human_intervention_continue', data);
+  });
+  client.on('alert', function (data) {
+    io.emit('alert', data);
+  });
+  client.on('tool_data', function (data) {
+    io.emit('tool_data', data);
+  });
+
+  client.on('p2g_output', function (data) {
+    io.emit('console', data);
+  });
+});
+
+app.set('io', io);
+
+const sslKeyFile = process.env.SSL_KEY_FILE || config.sslKeyFile;
+const sslCertFile = process.env.SSL_CERT_FILE || config.sslCertFile;
+
+if (sslKeyFile && sslCertFile) {
+  const sslOpts = {
+    key: fs.readFileSync(sslKeyFile),
+    cert: fs.readFileSync(sslCertFile)
+  };
+  server = https.createServer(sslOpts, app);
+}
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort (val) {
+  const port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError (error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening () {
+  const addr = server.address();
+  console.log('Listening on ' + (server.key ? 'https://' : 'http://') + 'localhost:' + addr.port);
+}

@@ -1,0 +1,181 @@
+<%
+var items = [];
+if (workspace && workspace.items && workspace.items.length) {
+  items = workspace.items;
+}
+
+function generateId(item) {
+  return item.name.split(' ').join('_').split('.').join('_') + item.platformData.name.split(' ').join('_').split('.').join('_');
+}
+
+function generateIdContent(item, content) {
+  return item.name.split(' ').join('_').split('.').join('_') + item.platformData.name.split(' ').join('_').split('.').join('_') + content.name.split(' ').join('_').split('.').join('_');
+}
+
+function capitalize (s) {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+function colorHash(inputString){
+  var sum = 0;
+
+  for(var i in inputString){
+    sum += inputString.charCodeAt(i);
+  }
+
+  r = ~~(('0.'+Math.sin(sum+1).toString().substr(6))*256);
+  g = ~~(('0.'+Math.sin(sum+2).toString().substr(6))*256);
+  b = ~~(('0.'+Math.sin(sum+3).toString().substr(6))*256);
+
+  var rgb = "rgb("+r+", "+g+", "+b+")";
+
+  var hex = "#";
+
+  hex += ("00" + r.toString(16)).substr(-2,2).toUpperCase();
+  hex += ("00" + g.toString(16)).substr(-2,2).toUpperCase();
+  hex += ("00" + b.toString(16)).substr(-2,2).toUpperCase();
+
+  return {r: r, g: g, b: b, rgb: rgb, hex: hex};
+}
+
+function getLuma (c) {
+  var c = c.substring(1);      // strip #
+  var rgb = parseInt(c, 16);   // convert rrggbb to decimal
+  var r = (rgb >> 16) & 0xff;  // extract red
+  var g = (rgb >>  8) & 0xff;  // extract green
+  var b = (rgb >>  0) & 0xff;  // extract blue
+
+  var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // ITU-R BT.709
+
+  return luma;
+}
+
+function getCollapseState(id, type) {
+  if (id in collapseStatus) {
+    if (collapseStatus[id] === true) {
+      return '';
+    } else {
+      return 'show';
+    }
+  } else {
+    return type === 'TIP_RACK' ? '' : 'show';
+  }
+}
+
+%>
+
+<div class="accordion" id="accordionExample">
+  <%
+
+  for (var i=0;i<items.length; i++){
+
+  var content = items[i].content || [];
+  %>
+    <div class="platform-item">
+      <div class="item-title" id="heading-<%=generateId(items[i])%>">
+          <div class="d-flex">
+              <div class="platform-color">
+                <i style="font-size: 17px; color: <%=items[i].platformData.color%>;" class="fa fa-square-full" aria-hidden="true"></i>
+              </div>
+              <div class="" style="font-size: 16px;">
+                  <a onclick="saveCollapseState(this);" class="btn btn-link btn-block text-left btn-sm <%=getCollapseState('collapse-' + generateId(items[i]), items[i].platformData.type) === 'show' ? '' :'collapsed'%>" type="button" data-toggle="collapse" data-target="#collapse-<%=generateId(items[i])%>" aria-expanded="true" aria-controls="collapse-<%=generateId(items[i])%>">
+                  <%=items[i].name%>
+                </a>
+              </div>
+              <div class="ml-auto">
+                <i onclick="return editPlatformWorkspaceName('<%=escape(items[i].name)%>');" style="color: #585259; margin-right: 3px;" class="fa fa-edit editplatformname" aria-hidden="true"></i>
+              </div>
+          </div>
+          <div class="d-flex justify-content-start">
+            <div class="item-subtitle">
+              <small><%=items[i].platform%> (<%=items[i].platformData.type%>)</small>
+            </div>
+          </div>
+      </div>
+
+      <div id="collapse-<%=generateId(items[i])%>" class="collapse <%=getCollapseState('collapse-' + generateId(items[i]), items[i].platformData.type)%>" aria-labelledby="heading-<%=generateId(items[i])%>" >
+        <div class="card-body" style="padding: 2px; margin-left: 0px;">
+
+        <%
+        if (content.length === 0) {
+          %>[empty]<%
+      }
+        for (var j=0;j<content.length; j++){
+
+        var tags = content[j].tags || [];
+        var cid = generateIdContent(items[i], content[j]);
+        %>
+        <div onclick="return focusContent(this, '<%=escape(items[i].name)%>','<%=escape(content[j].name)%>', true);" id="<%=cid%>" class="cc content-list-item">
+         <div class="item-header">
+          <span class="contentTitle"><%=capitalize(content[j].type)%>:</span> <input onfocus="return selectText(this);" onkeypress="return inputKeyPress(this, event)" onfocusout="return updateContentName(this, '<%=escape(items[i].name)%>','<%=escape(content[j].name)%>', true, <%=escape(content[j].index)%>);" placeholder="name" id="nn_<%=cid%>" class="cool-input" type="text" value="<%=content[j].name%>"/> <i onclick="return deleteContent('<%=escape(items[i].name)%>','<%=escape(content[j].name)%>', true)" style="cursor: pointer; float: right; margin-top: 7px; margin-right: 3px; color: #e16d6d;" class="fa fa-trash" aria-hidden="true"></i>
+
+         </div>
+         <div class="card-body" style="padding: 6px;">
+            <div class="row">
+              <div class="col-6">
+                Index
+            </div>
+            <div class="col-6">
+              <%=content[j].index%>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-6">
+                Position (c,r)
+            </div>
+            <div class="col-6">
+              <%=content[j].position.col%>,
+              <%=content[j].position.row%>
+            </div>
+          </div>
+          <% if (content[j].type !== 'colony') { %>
+            <div class="row">
+                <div class="col-6">
+                  Volume (µl)
+                </div>
+                <div class="col-6">
+                  <input type="text" class="" id="nn_<%=cid%>" size="3" placeholder="ul" value="<%=content[j].volume%>" onkeypress="return inputKeyPress(this, event)" onfocusout="return updateContentVolume(this, '<%=escape(items[i].name)%>','<%=escape(content[j].name)%>', true);"> / <%=content[j].maxVolume || items[i].platformData.defaultMaxVolume%>
+                </div>
+              </div>
+            <%}%>
+          <div class="row">
+              <div class="col-12">
+                <div class="tags">
+                  <div id="tc_<%=cid%>">
+                <%
+                if (tags.length) {
+                  for (var t=0;t<tags.length; t++){
+                    var tagColor = colorHash(tags[t]).hex;
+                    var tagClassColor = '';
+                    var luma = parseInt(getLuma(tagColor), 10);
+                    if (luma < 60) {
+                      tagClassColor = "invertDark"
+                    }
+                    %>
+                    <span onclick="return startTagEditing(this,'<%=escape(cid)%>',  '<%=escape(items[i].name)%>','<%=escape(content[j].name)%>', true);" class="badge <%=tagClassColor%> luma<%=luma%>" style="background-color: <%=tagColor%>;"><%=tags[t]%></span>
+                  <%}
+
+                } else {%>
+                    <span id="te_<%=cid%>" style="cursor: pointer;" onclick="return startTagEditing(this,'<%=escape(cid)%>',  '<%=escape(items[i].name)%>','<%=escape(content[j].name)%>', true);" class="badge badge-light">Add Tags</span>
+                <%}
+                %>
+                  </div>
+                  <div style="display: none;" id="tic_<%=cid%>">
+                    <input onkeypress="return inputKeyPress(this, event)" onfocusout="return updateContentTags(this, '<%=escape(cid)%>', '<%=escape(items[i].name)%>','<%=escape(content[j].name)%>', true, <%=escape(content[j].index)%>);" placeholder="separate tags with comma" id="ti_<%=cid%>" class="tags-input" type="text" value="<%=(content[j].tags || []).join(',')%>"/>
+                  </div>
+
+              </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <%}%>
+
+        </div>
+      </div>
+    </div>
+  <%}%>
+</div>

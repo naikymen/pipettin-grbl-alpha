@@ -1,0 +1,52 @@
+<%
+
+function onlyUnique(value, index, self) {
+    return (self.indexOf(value) === index) && value;
+}
+
+function getContentsInWorkspace (workspace, itemName, by, contentValue) {
+    let contents = [];
+    if (workspace && workspace.items && workspace.items.length) {
+      for (var i = 0; i < workspace.items.length; i++) {
+        if (workspace.items[i].name === itemName || itemName === '') {
+          if (workspace.items[i] && workspace.items[i].content && workspace.items[i].content.length) {
+            for (var j = 0; j < workspace.items[i].content.length; j++) {
+              if (by === 'name') {
+                if (workspace.items[i].content[j].name === contentValue) {
+                  contents.push({item: workspace.items[i].name, content: workspace.items[i].content[j]});
+                }
+              } else if (by === 'tag'){
+                if ((workspace.items[i].content[j].tags || []).indexOf(contentValue) > -1) {
+                  contents.push({item: workspace.items[i].name, content: workspace.items[i].content[j]});
+                }
+              }
+            }
+          }
+        }// end
+      }
+    }
+    return contents;
+}
+
+function calculateTargetsByTag (workspace, tag) {
+  var contents = getContentsInWorkspace(workspace, '', 'tag', tag);
+  return contents.length;
+}
+
+%>
+
+<select onchange="updateStepVolumeTag(this, '<%=escape(step.name)%>');" id="step-volume-tag-<%=sid%>">
+  <option <%=('' === step.definition.volume.tag ? 'selected':'')%> value="">Select One</option>
+<%
+var tags = [];
+for (var it=0;it<workspace.items.length; it++){
+	for (var c=0;c<workspace.items[it].content.length; c++){
+		var currentTags = workspace.items[it].content[c].tags;
+		tags = tags.concat(currentTags);
+	}
+}
+tags = tags.filter(onlyUnique);
+for (var ti=0;ti < tags.length; ti++){%>
+<option <%=(tags[ti] === step.definition.volume.tag ? 'selected':'')%> value="<%=escape(tags[ti])%>"><%=tags[ti]%> (x<%=calculateTargetsByTag(workspace,tags[ti])%>)</option>
+<%}%>
+</select>

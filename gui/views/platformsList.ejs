@@ -1,0 +1,23 @@
+<button onclick="newPlatformPanel();" type="button" class="btn btn-sm btn-success">Create</button> <button onclick="importPlatform();" type="button" class="btn btn-sm btn-primary">Import</button>
+<table class="table table-sm table-hover table-borderless table-striped">
+ <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Description</th>
+      <th style="text-align: right;" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% list.forEach(function(item, i){ %>
+    <tr>
+      <td><%=i+1%></td>
+      <td><%=item.name%></td>
+      <td><%=item.type%></td>
+      <td><%=item.description%></td>
+      <td style="text-align: right;"> <button onclick="editPlatformPanel('<%=escape(item.name)%>');" type="button" class="btn btn-sm btn-primary">Edit</button> <button onclick="exportPlatform('<%=escape(item.name)%>');" type="button" alt="Export" title="Export" class="btn btn-sm btn-secondary"><i class="fas fa-file-download"></i></button> <button onclick="deletePlatform('<%=escape(item.name)%>');" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-trash-alt"></i></button></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>

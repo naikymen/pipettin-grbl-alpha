@@ -1,0 +1,12 @@
+
+<%
+if (data && data.length) {
+	data.forEach(function (p){
+		%><option value="<%=p.path%>"><%=p.path%> - <%=p.serialNumber%></option><%
+	});
+}
+%>
+<option value='/dev/test'>/dev/test</option>
+<option value='/dev/ttyUSB0'>/dev/ttyUSB0</option>
+<option value=''>Grbl Serial Port</option>
+

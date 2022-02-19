@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            
+        </div>
+        <div class="panel-body">
+        	<div class="row">
+        	<div class="col-6">
+				<div id="editor"><% if (mode === 'create'){%>{
+	"name": "Unique name",
+	"description": "Some description",
+	"type": "TUBE_RACK", // enum type. Check documentation for supported types.
+	"width": 121, // platform size in mm
+	"length": 86, // platform size in mm
+	"color": "#4c7ecf", // platform size in mm
+	"firstWellCenterX": 12, // mm relative to platform corner
+	"firstWellCenterY": 10, // mm relative to platform corner
+	"wellDiameter": 6, // mm
+	"wellSeparationX": 9, // space between weels in X axis (mm)
+	"wellSeparationY": 9, // space between weels in Y axis (mm)
+	"wellsColumns": 12, // total columns, parallel to X axis
+	"wellsRows": 8, // total rows, parallel to Y axis
+	"defaultTopPosition": 20, // the top of the tube is at ?mm in Z height
+	"defaultBottomPosition": 5, // height where to collect liquid
+	"rotation": 0
+}<% } else { %><%=JSON.stringify(data, null, 4);%><%}%></div>
+			</div>
+			<div class="col-6">
+
+				<div id="platformPreviewDraw"></div>
+			</div>
+		</div>
+        </div>
+    </div>
+    <div class="text-center"></div>
+</div>
+<div class="modal-footer">
+<div id="loadinindicator" class="text-center" style="display: none;">
+  <div class="spinner-border">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div id="errorBox" class="alert alert-danger" style="display:none;" role="alert"></div>
+<button type="button" class="btn btn-primary" onclick='return <% if (mode === 'create'){%>saveNewPlatform<%} else {%>editPlatform<%}%>();'>Save</button>
+<button type="button" class="btn btn-secondary" onclick="getPlatformsList();">Cancel</button>
+</div>

@@ -1,0 +1,18 @@
+{
+	"name": "12x8_0.2_rack", // name but ID
+	"description": "Gradilla 96 wells ap-biotech EXG-P1090C",
+	"type": "TUBE_RACK", // enum type
+	"width": 121, // platform size in mm
+	"height": 86, // platform size in mm
+	"firstWellCenterX": 12, // mm relative to platform corner
+	"firstWellCenterY": 10, // mm relative to platform corner
+	"wellDiameter": 6, // mm
+	"wellSeparationX": 9, // space between weels in X axis (mm)
+	"wellSeparationY": 9, // space between weels in Y axis (mm)
+	"wellsColumns": 12, // total columns, parallel to X axis
+	"wellsRows": 8, // total rows, parallel to Y axis
+	"defaultTopPosition": 20, // the top of the tube is at ?mm in Z height
+	"defaultBottomPosition": 5, // height where to collect liquid
+	"defaultMaxVolume": 200, // max tube volume in ul by default
+	"rotation": 0
+}

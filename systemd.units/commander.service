@@ -1,0 +1,17 @@
+[Unit]
+# Human readable name of the unit
+Description=Pipettin GRBL driver daemon
+StartLimitIntervalSec=10
+StartLimitBurst=10
+
+[Service]
+# Command to execute when the service is started
+ExecStart=/usr/bin/python3 /home/pi/pipettin-grbl/protocol2gcode/commander.py
+Environment=PYTHONUNBUFFERED=1
+# Previously on-failure
+# https://www.freedesktop.org/software/systemd/man/systemd.service.html#
+Restart=always
+Type=notify
+
+[Install]
+WantedBy=default.target

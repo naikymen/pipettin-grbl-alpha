@@ -1,0 +1,12 @@
+
+<select onchange="updateStepTipFrom(this, '<%=escape(step.name)%>');" id="step-tipfrom-<%=sid%>">
+<option <%=(step.definition.tip.item === '' ? 'selected':'')%>value=''>Select One</option>
+<%
+for (var it=0;it<workspace.items.length; it++){
+if (workspace.items[it].platformData.type === 'TIP_RACK') {
+	var name = workspace.items[it].name;
+	%>
+	<option <%=(name === step.definition.tip.item ? 'selected':'')%> value="<%=escape(name)%>"><%=name%></option>
+
+<%}}%>
+</select>

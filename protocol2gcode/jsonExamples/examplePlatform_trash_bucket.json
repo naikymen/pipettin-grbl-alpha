@@ -1,0 +1,9 @@
+{
+	"name": "trash_bucket",
+	"description": "Generic recipient",
+	"type": "BUCKET",
+	"width": 150,
+	"height": 100,
+	"defaultTopPosition": 60, // border height in Z
+	"rotation": 0
+}

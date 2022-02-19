@@ -1,0 +1,19 @@
+{
+	"name": "10ul_tip_rack_sartorius",
+	"description": "Rack de tips sartorius",
+	"type": "TIP_RACK",
+	"width": 120,
+	"height": 90,
+	"firstWellCenterX": 10,
+	"firstWellCenterY": 10,
+	"wellDiameter": 5,
+	"wellSeparationX": 10,
+	"wellSeparationY": 10,
+	"wellsColumns": 12,
+	"wellsRows": 8,
+	"defaultTopPosition": 60,
+	"defaultMaxVolume": 10,
+	"defaultLoadBottom": 50, // how much fall down to catch up the tip
+	"tipLength": 30, // mm
+	"rotation": 0
+}

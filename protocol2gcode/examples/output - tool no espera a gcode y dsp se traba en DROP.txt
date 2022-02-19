@@ -1,0 +1,2146 @@
+commanderTest.py called, initiating...
+args.port: /dev/ttyACM0
+args.baudrate: 115200
+args.workspace: None
+args.item: None
+args.content: None
+args.calibration: None
+args.run-protocol: p200_pipetting_height_calib 2021-03-04T20:22:18.847Z
+args.command: None
+args.move: None
+args.distance: None
+args.home: None
+args.interactive: False
+args.dry: False
+commanderTest.py message: Provided protocol name: 'p200_pipetting_height_calib 2021-03-04T20:22:18.847Z'
+
+commanderTest.py message: Connecting to mongodb
+
+commanderTest.py message: Init protocol task class
+
+Hi! initializing the pipettin 'task object'.
+
+commanderTest.py message: Generate GCODE
+
+
+Processing command HOME with index 0
+  HOME action supplied without action.args.which; defaulting to 'all'
+Processed actionHOME with index 0
+
+Processing command PICK_TIP with index 1
+Processed macroPickNextTip action with index 1
+
+Processing command LOAD_LIQUID with index 2
+Processed macroGoToAndPipette action with index 2
+
+Processing command DROP_LIQUID with index 3
+Processed macroGoToAndPipette action with index 3
+
+Processing command DISCARD_TIP with index 4
+Processed actionDISCARD_TIP with index 4
+
+Processing command COMMENT with index 5
+Processed actionComment with index 5 and text: 'End step: step1'
+
+Processing command HOME with index 6
+  HOME action supplied without action.args.which; defaulting to 'all'
+Processed actionHOME with index 6
+('; Building action 0, with command: HOME\n'
+ '$H\n'
+ 'Phome;14.8\n'
+ 'G92 X0 Y0 Z125\n'
+ '; Building action 1, with command: PICK_TIP\n'
+ 'G90 G0 Z60.5\n'
+ 'G90 G0 X85.96 Y20.869999999999997\n'
+ 'G90 G0 Z32\n'
+ 'G38.3 Z-6 F200\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 2, with command: LOAD_LIQUID\n'
+ 'G90 G0 Z110.5\n'
+ 'G90 G0 X160.2 Y80.0\n'
+ 'G90 G0 Z20\n'
+ 'Pmove;5.570423008216337\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 3, with command: DROP_LIQUID\n'
+ 'G90 G0 Z110.5\n'
+ 'G90 G0 X160.2 Y53.599999999999994\n'
+ 'G90 G0 Z20\n'
+ 'Pmove;-5.570423008216337\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 4, with command: DISCARD_TIP\n'
+ 'G90 G0 Z110.5\n'
+ 'G90 G0 X69.0 Y141.0\n'
+ 'G90 G0 Z46\n'
+ 'Peject;\n'
+ 'G90 G0 Z110.5\n'
+ '; Building action 5, with command: COMMENT\n'
+ '; Building action 6, with command: HOME\n'
+ '$H\n'
+ 'Phome;14.8\n'
+ 'G92 X0 Y0 Z125')
+
+commanderTest.py message: Sending protocol
+
+Pipette axis init
+Pipette axis ready!
+
+
+driver message:
+    Connecting to/dev/ttyACM0 at 115200
+
+driver message:
+    Waking GRBL...
+
+driver message:
+    Resetting input buffer...
+
+driver message:
+    Setting up monitor thread events and queues...
+
+driver message:
+    Starting threads...
+
+serial_reader:
+    waiting for running_event...
+serial_writer:
+    writer thread started waiting for running_event...
+
+
+periodic_report:
+    waiting for running_event...
+driver message:
+    Setting thread run event...
+
+driver message:
+    Waiting for status report...
+serial_writer:
+    enabled running_event, waiting for commands from input_queue
+
+
+serial_reader:
+    running_event is set! polling serial_interface continuously...
+
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0>
+
+driver message:
+    GRBL reports IDLE or ok :)
+
+Protocol step 1 of 33
+Next protocol command is:
+ ; Building action 0, with command: HOME
+
+serial_writer:
+    Got command from parser: $1=255
+
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Waiting for unfinished tasks...$1=255
+
+serial_writer:
+    Sending command to serial write: $1=255
+
+serial_writer:
+    Waiting for input queue join with unfinished_tasks: 1
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0>
+
+serial_reader:
+    OK received, remaining tasks: 0
+serial_writer:
+    Waiting for idle_event: 0
+
+serial_writer:
+    Unlocking gcode block...
+
+serial_writer:
+    Done sending command: $1=255. Remaining buffer: 120
+
+Protocol step 2 of 33
+
+Next protocol command is:
+ $H
+
+Sending command to serial_writer queue: $H
+
+Done sending command to serial_writer queue: $H
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0|Ov:100,100,100>
+
+serial_writer:
+    Got command from parser: $H
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Waiting for unfinished tasks...$H
+
+serial_writer:
+    Sending command to serial write: $H
+
+serial_writer:
+    Waiting for input queue join with unfinished_tasks: 1
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:69.000,141.000,110.500|F:0>
+
+Protocol step 3 of 33
+Next protocol command is:
+ Phome;14.8
+
+serial_reader:
+    Line received, status report "Home": <Home|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    OK received, remaining tasks: 0
+serial_writer:
+    Waiting for idle_event: 0
+
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_writer:
+    Unlocking gcode block...
+
+serial_writer:
+    Done sending command: $H. Remaining buffer: 124Homing pipette (after GRBL idle)...
+
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+Pipette homing done!
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+Protocol step 4 of 33
+Next protocol command is:
+ G92 X0 Y0 Z125
+
+Sending command to serial_writer queue: G92 X0 Y0 Z125
+
+Done sending command to serial_writer queue: G92 X0 Y0 Z125
+
+
+serial_writer:
+    Got command from parser: G92 X0 Y0 Z125
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G92X0Y0Z125
+
+serial_writer:
+    Done sending command: G92X0Y0Z125. Remaining buffer: 115
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0|WCO:-268.000,-388.000,-127.000>
+
+Protocol step 5 of 33
+Next protocol command is:
+ ; Building action 1, with command: PICK_TIP
+
+Protocol step 6 of 33
+Next protocol command is:
+ G90 G0 Z60.5
+
+Sending command to serial_writer queue: G90 G0 Z60.5
+
+Done sending command to serial_writer queue: G90 G0 Z60.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z60.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z60.5
+
+serial_writer:
+    Done sending command: G90G0Z60.5. Remaining buffer: 116
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:0.000,0.000,125.000|F:0>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,124.985|F:360>
+
+Protocol step 7 of 33
+Next protocol command is:
+ G90 G0 X85.96 Y20.869999999999997
+
+Sending command to serial_writer queue: G90 G0 X85.96 Y20.869999999999997
+
+Done sending command to serial_writer queue: G90 G0 X85.96 Y20.869999999999997
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,124.855|F:600>
+
+serial_writer:
+    Got command from parser: G90 G0 X85.96 Y20.869999999999997
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0X85.96Y20.869999999999997
+
+serial_writer:
+    Done sending command: G90G0X85.96Y20.869999999999997. Remaining buffer: 96
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,124.540|F:840>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,123.890|F:1140|Ov:100,100,100>
+
+Protocol step 8 of 33
+Next protocol command is:
+ G90 G0 Z32
+
+Sending command to serial_writer queue: G90 G0 Z32
+
+Done sending command to serial_writer queue: G90 G0 Z32
+
+serial_writer:
+    Got command from parser: G90 G0 Z32
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z32
+
+serial_writer:
+    Done sending command: G90G0Z32. Remaining buffer: 118
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,123.140|F:1440>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,122.330|F:1680>
+
+Protocol step 9 of 33
+Next protocol command is:
+ G38.3 Z-6 F200
+
+Sending command to serial_writer queue: G38.3 Z-6 F200
+
+Done sending command to serial_writer queue: G38.3 Z-6 F200
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,121.250|F:1920>
+
+serial_writer:
+    Got command from parser: G38.3 Z-6 F200
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G38.3Z-6F200
+
+serial_writer:
+    Done sending command: G38.3Z-6F200. Remaining buffer: 114
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,120.115|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,118.520|F:2000|WCO:-268.000,-388.000,-127.000>
+
+Protocol step 10 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 102
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,117.095|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,115.835|F:2000>
+
+Protocol step 11 of 33
+Next protocol command is:
+ ; Building action 2, with command: LOAD_LIQUID
+
+Protocol step 12 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 90
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,114.040|F:2000>
+
+Protocol step 13 of 33
+Next protocol command is:
+ G90 G0 X160.2 Y80.0
+
+Sending command to serial_writer queue: G90 G0 X160.2 Y80.0
+
+Done sending command to serial_writer queue: G90 G0 X160.2 Y80.0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,112.240|F:2000>
+
+serial_writer:
+    Got command from parser: G90 G0 X160.2 Y80.0
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0X160.2Y80.0
+
+serial_writer:
+    Done sending command: G90G0X160.2Y80.0. Remaining buffer: 73
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,110.415|F:2000>
+
+Protocol step 14 of 33
+Next protocol command is:
+ G90 G0 Z20
+
+Sending command to serial_writer queue: G90 G0 Z20
+
+Done sending command to serial_writer queue: G90 G0 Z20
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,108.635|F:2000>
+
+serial_writer:
+    Got command from parser: G90 G0 Z20
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z20
+
+serial_writer:
+    Done sending command: G90G0Z20. Remaining buffer: 64
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,106.850|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,105.055|F:2000>
+
+Protocol step 15 of 33
+Next protocol command is:
+ Pmove;5.570423008216337
+Pipetting (after GRBL idle)...
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,103.620|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,102.260|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,100.925|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,99.305|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,97.515|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,96.065|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,94.670|F:2000|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,92.835|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,91.020|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,89.235|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,87.440|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,85.645|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,83.905|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,82.165|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,80.425|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,78.690|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,76.955|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,75.215|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,73.475|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,71.740|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,70.010|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,68.145|F:2000|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,66.495|F:1793>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,64.845|F:1493>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,63.450|F:1193>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,62.265|F:833>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,61.425|F:533|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,60.820|F:233>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.000,0.000,60.530|F:296>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.150,0.050,60.500|F:667>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.450,0.100,60.500|F:914>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:0.875,0.225,60.500|F:1099>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:1.625,0.400,60.500|F:1407>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:2.450,0.600,60.500|F:1654>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:3.350,0.825,60.500|F:1901>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:4.400,1.075,60.500|F:2148>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:6.075,1.475,60.500|F:2457>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:8.025,1.950,60.500|F:2766>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:10.250,2.500,60.500|F:3075>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:12.725,3.100,60.500|F:3383>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:15.500,3.775,60.500|F:3692>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:18.625,4.525,60.500|F:4063>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:22.050,5.350,60.500|F:4371>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:25.775,6.250,60.500|F:4742>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:29.800,7.225,60.500|F:5050>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:34.075,8.275,60.500|F:5145>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:38.475,9.350,60.500|F:5145|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:42.950,10.425,60.500|F:5145>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:47.450,11.525,60.500|F:5145>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:51.925,12.625,60.500|F:4799>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:56.150,13.650,60.500|F:4490>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:60.100,14.600,60.500|F:4181|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:63.975,15.525,60.500|F:3811>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:67.400,16.375,60.500|F:3502>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:70.475,17.125,60.500|F:3131>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:73.275,17.800,60.500|F:2823>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:75.875,18.425,60.500|F:2514>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:78.125,18.975,60.500|F:2144>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:80.100,19.450,60.500|F:1835>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:81.800,19.875,60.500|F:1526>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:83.200,20.200,60.500|F:1156>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:84.300,20.475,60.500|F:847>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.125,20.675,60.500|F:538>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.675,20.800,60.500|F:168>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.925,20.875,60.500|F:351>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,60.315|F:651>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,59.850|F:951|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,59.105|F:1251>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,58.090|F:1611>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,56.805|F:1911>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,55.255|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,53.515|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,51.775|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,50.055|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,48.330|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,46.500|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,44.675|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,43.405|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,42.040|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,40.585|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,39.240|F:2000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,37.845|F:1802|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,36.135|F:1442>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,34.755|F:1142>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,33.885|F:902>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,33.200|F:662>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,32.675|F:422|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,32.305|F:182>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,32.080|F:0>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.990|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.855|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.715|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.575|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.440|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.310|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.135|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.955|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.775|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.600|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.455|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.320|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.165|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.025|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.895|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.755|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.625|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.450|F:200|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.305|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.175|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.035|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,28.910|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,28.735|F:200|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,28.610|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,28.480|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,28.305|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,28.175|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,28.040|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.905|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.775|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.615|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.440|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.305|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.170|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.020|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,26.835|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,26.655|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,26.485|F:200|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,26.345|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,26.215|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,26.080|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,25.900|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,25.760|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,25.635|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,25.505|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,25.350|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,25.155|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.980|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.830|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.695|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.545|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.365|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.185|F:200|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.005|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,23.880|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,23.750|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,23.565|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,23.390|F:200|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,23.210|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,23.030|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,22.905|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,22.760|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,22.580|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,22.455|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,22.315|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,22.140|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,21.960|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,21.820|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,21.685|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,21.510|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,21.330|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,21.155|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,20.975|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,20.800|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,20.620|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,20.440|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,20.260|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,20.080|F:200|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,19.880|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,19.720|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,19.540|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,19.365|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,19.185|F:200|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,19.005|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.835|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.660|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.485|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.315|F:200>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.140|F:200|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.015|F:0|Pn:P>
+
+serial_reader:
+    Line received, not classified: [PRB:-182.050,-367.125,-108.865:1]
+
+serial_reader:
+    OK received, remaining tasks: 4
+
+serial_reader:
+    OK received, remaining tasks: 3
+
+serial_reader:
+    OK received, remaining tasks: 2
+
+serial_reader:
+    OK received, remaining tasks: 1
+
+serial_reader:
+    Line received, status report "idle": <Idle|WPos:85.950,20.875,17.935|F:0|Pn:P>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.005|F:480|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.345|F:840|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,18.945|F:1140|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,19.815|F:1440|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,20.960|F:1740|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,22.385|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,24.085|F:2000|Pn:P|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,25.345|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,26.620|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,27.975|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,29.295|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,30.645|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,31.900|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,33.280|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,35.070|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,36.885|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,38.685|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,40.485|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,41.780|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,43.300|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,45.115|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,46.925|F:2000|Pn:P|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,48.405|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,49.765|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,51.225|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,52.615|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,54.030|F:2000|Pn:P|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,55.585|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,57.145|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,58.425|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,60.215|F:2000|Pn:P>
+Pipetting done!
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,61.645|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,62.950|F:2000|Pn:P>
+
+Protocol step 16 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,64.385|F:2000|Pn:P>
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 115
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,65.820|F:2000|Pn:P>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,67.620|F:2000|Pn:P>
+
+Protocol step 17 of 33
+Next protocol command is:
+ ; Building action 3, with command: DROP_LIQUID
+
+Protocol step 18 of 33
+Next protocol command is:
+ G90 G0 Z110.5
+
+Sending command to serial_writer queue: G90 G0 Z110.5
+
+Done sending command to serial_writer queue: G90 G0 Z110.5
+
+serial_writer:
+    Got command from parser: G90 G0 Z110.5
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z110.5
+
+serial_writer:
+    Done sending command: G90G0Z110.5. Remaining buffer: 115
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,68.975|F:2000|Pn:P>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+Protocol step 19 of 33
+Next protocol command is:
+ G90 G0 X160.2 Y53.599999999999994
+
+Sending command to serial_writer queue: G90 G0 X160.2 Y53.599999999999994
+
+Done sending command to serial_writer queue: G90 G0 X160.2 Y53.599999999999994
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,70.340|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,72.170|F:2000|Pn:P>
+
+serial_writer:
+    Got command from parser: G90 G0 X160.2 Y53.599999999999994
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0X160.2Y53.599999999999994
+
+serial_writer:
+    Done sending command: G90G0X160.2Y53.599999999999994. Remaining buffer: 96
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,73.600|F:2000|Pn:P>
+
+Protocol step 20 of 33
+Next protocol command is:
+ G90 G0 Z20
+
+Sending command to serial_writer queue: G90 G0 Z20
+
+Done sending command to serial_writer queue: G90 G0 Z20
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,74.865|F:2000|Pn:P>
+
+serial_writer:
+    Got command from parser: G90 G0 Z20
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...
+
+serial_writer:
+    Sending command to serial write: G90G0Z20
+
+serial_writer:
+    Done sending command: G90G0Z20. Remaining buffer: 118
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,76.140|F:2000|Pn:P>
+
+serial_reader:
+    OK received, remaining tasks: 0
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,77.410|F:2000|Pn:P>
+
+Protocol step 21 of 33
+Next protocol command is:
+ Pmove;-5.570423008216337
+Pipetting (after GRBL idle)...
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,78.800|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,80.115|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,81.455|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,82.825|F:2000|Pn:P|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,84.090|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,85.545|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,87.390|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,88.760|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,90.120|F:2000|Pn:P|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,91.590|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,93.435|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,94.805|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,96.065|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,97.375|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,99.115|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,100.485|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,101.775|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,103.250|F:2000|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,104.995|F:1745|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,106.600|F:1385|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,107.930|F:1085|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,108.985|F:785|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,109.795|F:425|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.950,20.875,110.305|F:125|Pn:P|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:85.975,20.875,110.500|F:571|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:86.125,21.000,110.500|F:801|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:86.400,21.250,110.500|F:1108|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:86.875,21.625,110.500|F:1415|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:87.750,22.300,110.500|F:1798|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:88.600,22.975,110.500|F:2105|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:89.525,23.725,110.500|F:2412|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:90.650,24.600,110.500|F:2719|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:91.950,25.650,110.500|F:3025|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:93.350,26.750,110.500|F:3332|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:95.000,28.075,110.500|F:3639|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:96.800,29.525,110.500|F:3946|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:98.650,30.975,110.500|F:4176|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:101.275,33.075,110.500|F:4559|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:103.725,35.025,110.500|F:4943|Pn:P|WCO:-268.000,-388.000,-127.000>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:106.800,37.500,110.500|F:5326|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:109.675,39.750,110.500|F:5633|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:112.425,41.950,110.500|F:5940|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:116.500,45.200,110.500|F:6323|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:119.975,47.975,110.500|F:6392|Pn:P|Ov:100,100,100>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:123.275,50.600,110.500|F:6214|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:126.650,53.300,110.500|F:5907|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:129.900,55.875,110.500|F:5600|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:133.150,58.475,110.500|F:5293|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:136.125,60.825,110.500|F:4986|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:139.750,63.725,110.500|F:4526|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:143.025,66.325,110.500|F:4143|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:145.475,68.275,110.500|F:3836|Pn:P>
+
+serial_reader:
+    Line received, status report "Run": <Run|WPos:147.475,69.850,110.500|F:3529|Pn:P>
+
+Protocol loop ended. Cleaning up!
+
+serial_writer:
+    Got command from parser: $1=25
+
+
+serial_writer:
+    Clearing ok queue
+
+serial_writer:
+    Checking buffer overflow...
+
+serial_writer:
+    Checking if setting command...

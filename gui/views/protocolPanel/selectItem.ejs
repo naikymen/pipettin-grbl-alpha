@@ -1,0 +1,23 @@
+<%
+if (!step.definition) {
+	
+	return;
+}
+var entryDeff = step.definition.source;
+var entryPath = 'source.item';
+if (entry === 'target') {
+	entryDeff = step.definition.target;
+	var entryPath = 'target.item';
+}
+%>
+
+<select onchange="updateStepItem(this, '<%=entryPath%>' , '<%=escape(step.name)%>');" id="step-<%=entry%>-<%=sid%>">
+<option <%=(entryDeff.item === '' ? 'selected':'')%>value=''>Any</option>
+<%
+for (var it=0;it<workspace.items.length; it++){
+var name = workspace.items[it].name;
+%>
+<option <%=(name === entryDeff.item ? 'selected':'')%> value="<%=escape(name)%>"><%=name%></option>
+
+<%}%>
+</select>
