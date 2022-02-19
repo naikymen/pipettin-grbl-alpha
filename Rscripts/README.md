@@ -1,5 +1,9 @@
 # R code for pipettin-grbl
 
+The PCR Mix protocol planner uses a custom R script, which clusters tubes by similarity into a dendrogram.
+The resulting tree is cut, and intermediate solutions are prepared, reducing the amount of required pipetting steps,
+and a consequently faster protocol. 
+
 We use this version of R:
 
 ```
