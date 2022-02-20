@@ -17,9 +17,15 @@ To make a liquid handling robot which is:
 
 We've reached "alpha" status, and are currently applying for funding to fully document this project.
 
-> Proper documentation to build this yourself is not yet ready, let us know if you wish to get help, or help out :)
+Our bot can:
+
+* Be programmed using a very nice web UI.
+* Place tips, load and dispense liquid solutions, and discard tips.
+* Prepare combinatorial PCR mixes with a reasonable optimized automatic planner.
 
 ![mender1_cdnm_mazinger](doc/media/pics/21_04-en_el_labo/IMG_7441.JPG)
+
+> Proper documentation to build this yourself is not yet ready, let us know if you wish to get help, or help out :)
 
 # Guia de usuario
 
@@ -53,7 +59,13 @@ Find design and functional details at [DEVELOPMENT](DEVELOPMENT.md).
 
 # Credits
 
-* Nicolás (project developer)
-* Facundo (project developer)
+Original development by Nicolás and Facundo:
+
+* The web UI.
+* Models for the the CNC frame and pipette actuators.
+* CNC and pipette drivers.
+
+We are very thankful to:
+
 * The developers of GRBL, and the greater open source community.
 * The [reGOSH](https://regosh.libres.cc/en/home-en/) free tech, latin-american network!
