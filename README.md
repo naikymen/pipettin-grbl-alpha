@@ -41,3 +41,4 @@ Find design and functional details at [DEVELOPMENT](DEVELOPMENT.md).
 * Nicolás (project developer)
 * Facundo (project developer)
 * The developers of GRBL, and the greater open source community.
+* The [reGOSH](https://regosh.libres.cc/en/home-en/) free tech, latin-american network!
