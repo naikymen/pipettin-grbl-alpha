@@ -2,6 +2,17 @@
 
 Pipetting robotware for laboratory protocol automation.
 
+## Project objective
+
+To make a liquid handling robot which is:
+- easy to use,
+- fully open source,
+- highly documented, 
+- modular in design,
+- minimal in cost,
+- very hackable,
+- and integrates well with other labware projects.
+
 > Proper documentation to build this yourself is not yet ready, let us know if you wish to get help, or help out :)
 
 ![mender1_cdnm_mazinger](doc/media/pics/21_04-en_el_labo/IMG_7441.JPG)
