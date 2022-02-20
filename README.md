@@ -2,6 +2,8 @@
 
 Pipetting robotware for laboratory protocol automation.
 
+> Proper documentation to build this yourself is not yet ready, let us know if you wish to help out.
+
 ![mender1_cdnm_mazinger](doc/media/pics/21_04-en_el_labo/IMG_7441.JPG)
 
 # Guia de usuario
@@ -34,3 +36,8 @@ Find assembly and setup instructions at [ASSEMBLY](ASSEMBLY.md).
 
 Find design and functional details at [DEVELOPMENT](DEVELOPMENT.md).
 
+# Credits
+
+* Nicolás (project developer)
+* Facundo (project developer)
+* The developers of GRBL, and the greater open source community.
