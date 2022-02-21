@@ -2,7 +2,10 @@
 
 Pipetting robotware for laboratory protocol automation.
 
-Alpha prototype videos here: https://www.youtube.com/watch?v=5_eDGsb4E6M&list=PLSqqZBTIQ_dz2dSU0l852d4ZE4sjo2JjA
+Alpha prototype videos here:
+
+[![youtube playlist](https://user-images.githubusercontent.com/3259326/154876955-560acf31-f670-4b91-8ee6-504c9dda07c8.png)](https://www.youtube.com/watch?v=5_eDGsb4E6M&list=PLSqqZBTIQ_dz2dSU0l852d4ZE4sjo2JjA)
+
 
 > Pardon our _castellano_ :)
 
