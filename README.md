@@ -27,7 +27,7 @@ Our bot can:
 
 * Be programmed using a very nice web UI.
 * Place tips, load and dispense liquid solutions, and discard tips.
-* Prepare combinatorial PCR mixes with a reasonable optimized automatic planner.
+* Prepare combinatorial PCR mixes with a reasonably optimized automatic planner.
 
 ![mender1_cdnm_mazinger](doc/media/pics/21_04-en_el_labo/IMG_7441.JPG)
 
