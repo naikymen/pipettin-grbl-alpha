@@ -2,6 +2,10 @@
 
 Pipetting robotware for laboratory protocol automation.
 
+Alpha prototype videos here: https://www.youtube.com/watch?v=5_eDGsb4E6M&list=PLSqqZBTIQ_dz2dSU0l852d4ZE4sjo2JjA
+
+> Pardon our _castellano_ :)
+
 ## Project objective
 
 To make a liquid handling robot which is:
