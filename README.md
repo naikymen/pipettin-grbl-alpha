@@ -2,9 +2,9 @@
 
 Pipetting robotware for laboratory protocol automation.
 
-This repository contains hardware design files and software, 
-licenced under the [CERN-OHL-S licence](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/HARDWARE_LICENCE.txt) 
-and the [GNU GPLv3 licence](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/SOFTWARE_LICENCE.txt), respectively.
+This repository contains hardware design files and software for a test prototype. 
+Hardware is licenced under the [CERN-OHL-S](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/HARDWARE_LICENCE.txt) licence 
+and software under the [GNU GPLv3 licence](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/SOFTWARE_LICENCE.txt) licence.
 
 ![mender1_cdnm_mazinger](doc/media/pics/21_04-en_el_labo/IMG_7441.JPG)
 
