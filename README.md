@@ -22,9 +22,13 @@ Video overview available at [YouTube](https://www.youtube.com/watch?v=5_eDGsb4E6
 
 <!-- Aca no explicaria nada de la arquitectura ni de los modulos que intervienen). Este deberia ser el readme.md principa. -->
 
+> TO-DO
+
 ## Web GUI guide
 
 <!-- Manual de GUI -->
+
+> TO-DO
 
 ## Machine callibration
 
@@ -42,9 +46,13 @@ Calibracion de pipeta:
 - Protocolo de calibracion con balanza analítica.
 -->
 
+> TO-DO
+
 ### Workspace and platforms
 
 <!-- Calibracion del XYZ de los objetos en la mesa -->
+
+> TO-DO
 
 # Software installation
 
@@ -60,17 +68,25 @@ gunzip --stdout pipettin_pi.img.gz | sudo dd bs=4M of=/dev/YOUR_SD_CARD_DEVICE
 
 Details at [raspberrypi.org](https://www.raspberrypi.org/documentation/linux/filesystem/backup.md).
 
+> TO-DO: upload new image.
+
 ## Arduino firmware
 
 <!-- Guia Instalacion de GRBL en Arduino UNO -->
+
+> TO-DO
 
 # Assembly guide
 
 Find assembly and setup instructions at [ASSEMBLY](ASSEMBLY.md).
 
+> TO-DO
+
 # Contributing and Development
 
 Find design and functional details at [DEVELOPMENT](DEVELOPMENT.md).
+
+> TO-DO
 
 # Credits
 
