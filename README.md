@@ -2,6 +2,8 @@
 
 Pipetting robotware for laboratory protocol automation.
 
+> Proper documentation to build this yourself is not yet ready, let us know if you wish to get help, or help out :)
+
 This repository contains hardware design files and software for a test prototype. 
 Hardware is licenced under the [CERN-OHL-S](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/HARDWARE_LICENCE.txt) licence 
 and software under the [GNU GPLv3 licence](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/SOFTWARE_LICENCE.txt) licence.
@@ -137,5 +139,3 @@ Our bot can:
 * Be programmed using a very nice web UI.
 * Place tips, load and dispense liquid solutions, and discard tips.
 * Prepare combinatorial PCR mixes with a reasonably optimized automatic planner.
-
-> Proper documentation to build this yourself is not yet ready, let us know if you wish to get help, or help out :)
