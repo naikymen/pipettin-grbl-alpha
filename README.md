@@ -69,6 +69,7 @@ Requirements:
 Restore our SD card image using `dd` and `gunzip` from a terminal:
 
 ```
+# Replace "YOUR_SD_CARD_DEVICE" with your SD card's actual device name (you may use "lsblk" to find it).
 gunzip --stdout pipettin_pi.img.gz | sudo dd bs=4M of=/dev/YOUR_SD_CARD_DEVICE
 sync
 ```
