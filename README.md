@@ -60,15 +60,28 @@ Calibracion de pipeta:
 
 <!-- Guia Instalacion de imagen raspberry -->
 
-Restore our SD card image:
+Requirements:
+
+* The system's [image](https://drive.google.com/drive/folders/1sQWp9x0S_202jgzFJBe-YqoJQlnTlY16?usp=sharing).
+* 64 GB micro SD card.
+  * If you have a smaller SD card, try [trimming](https://superuser.com/a/610825) the image's filesystem before flashing.
+
+Restore our SD card image using `dd` and `gunzip` from a terminal:
 
 ```
 gunzip --stdout pipettin_pi.img.gz | sudo dd bs=4M of=/dev/YOUR_SD_CARD_DEVICE
+sync
 ```
 
-Details at [raspberrypi.org](https://www.raspberrypi.org/documentation/linux/filesystem/backup.md).
+To create the compressed filesystem backup, we used:
 
-> TO-DO: upload new image.
+```
+# Replace "sda" with your SD card's actual device name (you may use "lsblk" to find it).
+sudo dd bs=4M status=progress if=/dev/sda | gzip > pipettin_pi.img.gz
+sync
+```
+
+Details at [raspberrypi.org archive](https://web.archive.org/web/20210419061127/https://www.raspberrypi.org/documentation/linux/filesystem/backup.md).
 
 ## Arduino firmware
 
