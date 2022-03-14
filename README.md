@@ -30,7 +30,7 @@ Video overview available at [YouTube](https://www.youtube.com/watch?v=5_eDGsb4E6
 
 > TO-DO
 
-## Machine callibration
+## Machine calibration
 
 Callibration instructions before protocol run.
 
