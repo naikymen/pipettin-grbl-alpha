@@ -1,0 +1,8 @@
+Copyright holder: Nicolás A. Méndez
+Year: 2020
+
+All software in this repository is licenced under the "GNU GENERAL PUBLIC LICENSE Version 3". The licence text is included in this repository in the "SOFTWARE_LICENSE.txt" file.
+
+All hardware in this repository is licenced under the "CERN Open Hardware Licence Version 2 - Strongly Reciprocal". The licence text is included in this repository in the "HARDWARE_LICENSE.txt" file.
+
+A modified copy of the "Grbl" program is distributed in this repository. All credit to it's original authors (https://github.com/gnea/grbl). Grbl is free software, released under the GPLv3 license.
