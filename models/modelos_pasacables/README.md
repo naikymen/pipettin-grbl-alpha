@@ -2,6 +2,14 @@
 
 * https://en.wikipedia.org/wiki/Cable_carrier
 
+# FreeCAD models
+
+These are the final models (see `freecad_port_models/`).
+
+Port of [Gasolin's work](https://www.thingiverse.com/thing:4375470).
+
+![image](https://user-images.githubusercontent.com/3259326/161280291-be077132-8526-4f32-a9cb-6659c3292771.png)
+
 # Thingiverse models
 
 * Esta tiene infinitos likes, parece que es la que va: https://www.thingiverse.com/thing:1078216
@@ -80,4 +88,8 @@ Working cable carrier model.
 Incremente el "underangle" un poco. Las orugas más largas se doblan un poco hacia adentro todavía :/
 
 Pasó de -4 a -4.5 en el archivo openscad.
+
+## v1.0
+
+Port del modelo a FreeCAD, con mounting holes.
 
