@@ -8,7 +8,7 @@ This repository contains hardware design files and software for a test prototype
 Hardware is licenced under the [CERN-OHL-S](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/HARDWARE_LICENCE.txt) licence 
 and software under the [GNU GPLv3 licence](https://github.com/naikymen/pipettin-grbl-alpha/blob/master/SOFTWARE_LICENCE.txt) licence.
 
-![mender1_cdnm_mazinger](doc/media/pics/21_04-en_el_labo/IMG_7441.JPG)
+![mender1_cdnm_mazinger](https://user-images.githubusercontent.com/3259326/170981663-7e9860e4-9677-424f-8476-e0a23e605067.JPG)
 
 > Pardon our _castellano_ :)
 
